@@ -41,9 +41,7 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
-else.bst
 *.aux
-else.txt
 *.bbl
 *.log
 *.gz
