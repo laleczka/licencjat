@@ -1,0 +1,46 @@
+\documentclass[licencjacka]{pracamgr_2}
+%\usepackage{latexsym}
+\usepackage[MeX]{polski}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{afterpage}
+\usepackage{rotating}
+%\usepackage{subfigure}
+\usepackage{polski}
+\usepackage{natbib}
+
+\author{ Tu wpisz imię i nazwisko autora }
+\nralbumu{ tu wpisz numer albumu }
+\title{ Tytuł pracy w języku polskim.}
+\tytulang{ Tytuł pracy w języku angielskim}
+\kierunek{Zastosowania Fizyki w Biologii i Medycynie}
+\opiekun{stopień Imię i Nazwisko promotora \\ Zakład Fizyki Biomedycznej \\ Instytut Fizyki Doświadczalnej}
+\dziedzina{13.200}
+\specjalnosc{Specjalność}
+\date{Miesiąc i rok złożenia pracy}
+\keywords{słowa kluczowe}
+\bibliographystyle{elsart-harv}
+
+\begin{document}
+\maketitle
+\let\cleardoublepage\clearpage
+
+\begin{abstract}
+Tu wpisujemy streszczenie
+\end{abstract}
+\tableofcontents
+\chapter*{Cel pracy}
+\addcontentsline{toc}{chapter}{Cel pracy}
+Cel pracy.
+\chapter{Wstęp}
+Tu piszemy informacje wprowadzające w tematykę  pracy, potrzebne do zrozumienia treści.
+\section{Pierwsza sekcja}
+Przykładowa cytacja \citet{Shepherd}.
+\chapter{Dane eksperymentalne}
+
+\chapter{Metodologia}
+\chapter{Wyniki}
+\chapter{Dyskusja}
+\chapter{Podsumowanie}
+\bibliography{bibliografia}
+\end{document}
