@@ -23,7 +23,7 @@
 \advance\oddsidemargin 30mm
 \evensidemargin-1in
 \advance\evensidemargin 25mm
-\topmargin -1in
+\topmargin -2in
 \advance\topmargin 2cm
 \setlength\textheight{48\baselineskip}
 \addtolength\textheight{\topskip}

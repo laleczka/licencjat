@@ -1,0 +1,647 @@
+\documentclass{pracamgr_2}
+
+\usepackage{polski}
+
+\usepackage[cp1250]{inputenc}
+\usepackage{natbib} 
+\usepackage{graphicx}
+\usepackage[parfill]{parskip}
+%\usepackage[backend=biber,style=numeric]{biblatex}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{placeins}
+\usepackage{tikz}
+
+\captionsetup{belowskip=12pt,aboveskip=8pt}
+\renewcommand{\arraystretch}{1.5}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+
+\graphicspath{ {./images/} }
+%\usepackage{float} 
+
+\author{Agnieszka Porowska}
+
+\nralbumu{323371}
+
+%\renewcommand\bibname{Bibliografia}
+
+\title{Analiza zmian w sygnale LFP zwi¹zanych z treningiem wzrokowym i stymulacj¹ elektryczn¹ w strukturach uk³adu wzrokowego szczura.}
+
+\tytulang{Analysis of changes in LFP signal related to visiual training and electric stimulation in rat visual system structures.}
+
+
+\kierunek{ZASTOSOWANIA FIZYKI W BIOLOGII I MEDYCYNIE}
+\specjalnosc{Neuroinformatyka}
+
+\opiekun{dra hab. Jaros³awa ¯ygierewicza 
+  \\Zak³ad Fizyki
+  \\Instytut Fizyki Doœwiadczalnej
+  \\Wydzia³ Fizyki, Uniwersytet Warszawski
+  \\oraz
+  \\prof. dr hab. Wioletty Waleszczyk
+  \\Pracownia Neurobiologii Widzenia
+  \\Instytut Biologii Doœwiadczalnej im. M. Nenckiego PAN  
+  }
+
+% miesi¹c i~rok:
+\date{Czerwiec 2015}
+
+%Podaæ dziedzinê wg klasyfikacji Socrates-Erasmus:
+\dziedzina{
+13.2 Fizyka}
+
+% S³owa kluczowe:
+\keywords{analiza sygna³ów, potencja³ wywo³any, kora wzrokowa, uk³ad wzrokowy, Direct Transfer Function, nDTF}
+
+% Tu jest dobre miejsce na Twoje w³asne makra i~œrodowiska:
+\newtheorem{defi}{Definicja}[section]
+
+%\bibliography{bibliography}
+\bibliographystyle{else}
+
+% koniec definicji
+
+\begin{document}
+\maketitle
+
+%tu idzie streszczenie na strone poczatkowa
+\begin{abstract}
+W pracy wykorzystano dane pochodz¹ce z eksperymentów na szczurach w dwóch paradygmatach. Dla obu warunków doœwiadczalnych zarejestrowano sygna³ kontrolny, czyli odpowiedŸ uk³adu wzrokowego na bodziec œwietlny. Nastêpnie jedn¹ grupê szczurów od razu poddano treningowi wzrokowemu, i zbierano sygna³ po jednej, dwóch i trzech godzinach od pocz¹tku treningu. W drugiej grupie równie¿ rejestrowano efekt treningu wzrokowego w tych samych odstêpach czasowych, jednak zanim przyst¹piono do treningu, przez 1 min stymulowano oko sygna³em elektrycznym prostok¹tnym o czêstotliwoœci 20 Hz i amplitudzie (peak-to-peak) 200~$\mu$A. Elektrody do rejestracji odpowiedzi na bodziec zosta³y umieszczone bezpoœrednio w mózgu szczura, w strukturach uk³adu wzrokowego. W pracy przeanalizowano sygna³y z wybranych zestawów elektrod. Badano uœrednione potencja³y wywo³ane i po³¹czenia funkcjonalne za pomoc¹ nieznormalizowanej funkcji przejœcia (NDTF). U danych z obu eksperymentów Zaobserwowano wzrost amplitudy potencja³u wraz z d³ugoœci¹ treningu wzrokowego. Dla danych z eksperymentu poprzedzonego stymulacj¹ elektryczna zauwa¿ono wzrost wartoœci funkcji NDTF zaraz po wyst¹pieniu bodŸca (0-0,1 s) i w czasie 0,2 s. 
+\end{abstract}
+
+\tableofcontents
+%\listoffigures
+%\listoftables
+\chapter*{Cel pracy}
+\addcontentsline{toc}{chapter}{Cel pracy}
+Celem pracy by³o porównanie odpowiedzi na bodziec wzrokowy poprzedzony treningiem wzrokowym z odpowiedzi¹ na bodziec poprzedzony stymulacj¹ elektryczn¹ i treningiem wzrokowym.
+\chapter{Wprowadzenie}
+%\addcontentsline{toc}{chapter}{Wprowadzenie}
+Ju¿ pod koniec lat 40 ubieg³ego wieku zauwa¿ono, ¿e w wyniku prezentacji bodŸca w zapisie EEG pojawia siê s³abo widoczna odpowiedŸ na ten bodziec.  Pionierem badañ w tym zakresie by³ G.D. Dawson który zarejestrowa³ odpowiedzi na bodziec na kilku kliszach fotograficznych i po na³o¿eniu ich na siebie dostrzeg³  wzmocnienie odpowiedzi. Uœredniony sygna³ z kilku realizacji zsynchronizowanych wzglêdem bodŸca nazywa siê potencja³em wywo³anym EP (z \textit{ang. evoked potentials}) \citep{nieder}. Amplituda potencja³u jest ró¿na dla ka¿dego organizmu a tak¿e badanej struktury. Jednak¿e  wielokrotne powtarzanie serii jednakowych bodŸców, zwane po prostu treningiem wzrokowym, powoduje jej wzmocnienie \citep{hager}. To wzmocnienie jest zauwa¿alne jako zwiêkszenie amplitudy odpowiedzi na bodziec. Jednoczeœnie obserwuje siê polepszenie funkcji wzrokowych za pomoc¹ nieinwazyjnego stymulowania mózgu pr¹dem o niskiej amplitudzie \citep{schulz}. 
+
+\section{Budowa uk³adu wzrokowego}
+Na Rysunku \ref{rys:sch_u_wz} przedstawiono schemat organizacji uk³adu wzrokowego. Informacja wzrokowa z siatkówki dociera do kory wzrokowej dwiema równoleg³ymi drogami. Obie zaczynaj¹ siê na siatkówce, gdzie bodŸce œwietlne odbierane przez fotoreceptory, s¹ przetwarzane przez szereg komórek nerwowych i w postaci zmian potencja³u s¹ przekazywane do nerwu wzrokowego. Tu drogi siê rozdzielaj¹. Pierwsza z nich, zwana kolankowat¹ drog¹ wzrokow¹, prowadzi przez czêœæ grzbietow¹ j¹dra kolankowatego bocznego (\textit{ang. dorsal lateral geniculate nucleus}, dLGN)  do pierwszorzêdowej kory wzrokowej (V1), a stamt¹d do pól korowych wy¿szych rzêdów. Druga droga, zwana pozakolankowat¹ drog¹ wzrokow¹, wiedzie przez wzgórek czworaczy górny przez kompleks j¹dra tylno-bocznego poduszki i dociera, do pierwszorzêdowej kory wzrokowej i dalej do pól korowych wy¿szych rzêdów. \citep{viola}. 
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.5]{schemat_ukladu.jpg}
+	\end{center}
+	\caption{Schemat uk³adu wzrokowego \citep{hannula}.}
+	\label{rys:sch_u_wz}
+\end{figure}
+\section{Lokalne potencja³y polowe}
+Sygna³ rejestrowany bezpoœrednio z kory i warstw podkorowych nazywany jest elektrokorykogramem. Jest to metoda inwazyjna i tylko w  wyj¹tkowych okolicznoœciach przeprowadza siê j¹ na ludziach. Elektrody umieszczone s¹ tu¿ obok neuronów -- zbiera siê w ten sposób zapis aktywnoœci mózgu z niewielkiego obszaru. Zapis ten zwany jest lokalnymi potencja³ami polowymi (ang. \textit{Local Field Potentials}). W odró¿nieniu od sygna³u z powierzchni g³owy, w LFP rejestruje siê nie tylko potencja³ postsynaptyczny (Rysunek \ref{rys:epsp}), ale tak¿e czynnoœciowy (Rysunek \ref{rys:pot_spoczy}).
+
+Potencja³y postsynaptyczne s¹ to potencja³y docieraj¹ce do dendrytu komórki nerwowej. Wystêpuj¹ dwa rodzaje:
+\begin{itemize}
+	\item potencja³y pobudzaj¹ce EPSP (z ang. \textit{Excitatory Post-Synaptic Potentials})
+	\item potencja³y hamuj¹ce IPSP (z ang. \textit{Inhibitory Post-Synaptic Potentials}) 
+\end{itemize}
+Pierwsze z nich zwiêkszaj¹ szansê na wywo³anie potencja³u czynnoœciowego, a drugie tê szansê zmniejszaj¹. Do neuronu dociera równoczeœnie wiele potencja³ów. W chwili, gdy ich suma przekroczy pewn¹ wartoœæ graniczn¹, neuron zostaje pobudzony. Generuje potencja³ czynnoœciowy, który propaguje siê wzd³u¿ aksonu.
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.5]{epsp.jpg}
+	\end{center}
+	\caption{Schemat potencja³ów postsynaptycznych \citep{versace}.}
+	\label{rys:epsp}
+\end{figure}
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.5]{pot_spoczy.png}
+	\end{center}
+	\caption{Schemat potencja³u czynnoœciowego.}
+	\label{rys:pot_spoczy}
+\end{figure}
+\newpage
+\section{Warstwowa budowa struktur}
+Zarówno kora wzrokowa jak i wzgórek czworaczy górny charakteryzuj¹ siê warstwow¹ budow¹. Poszczególne warstwy ró¿ni¹ siê funkcj¹ oraz po³¹czeniami do innych struktur. Kluczem do ich rozpoznania jest przegiêcie widoczne na wykresach uœrednionych potencja³ów wywo³anych.
+\subsection{Kora wzrokowa}
+W pierwszorzêdowej korze wzrokowej (V1) mo¿na wyró¿niæ 6 warstw \citep{kora_warstwy}:
+\begin{itemize}
+	\item 3 warstwy nadziarniste
+	\item 1 warstwê ziarnist¹
+	\item 2 warstwy podziarniste
+\end{itemize}
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.55]{warstwy.png}
+	\end{center}
+	\caption{Struktura warstwowa pierwszorzêdowej kory wzrokowej \citep{kora_warstwy}.}
+	\label{rys:warstwy}
+\end{figure}
+\FloatBarrier
+\subsection{Wzgórek czworaczy górny}
+Na Rysunku \ref{rys:SC_warstwy} przedstawiono schematyczn¹ strukturê wzgórka czworaczego górnego u fretki. \newline Skrótami oznaczono:
+\begin{itemize}
+	\item[SZ] - \textit{stratum zonale}
+	\item[SGS] - \textit{stratum griseum superficiale}
+	\item[SO] - \textit{stratum opticum}
+	\item[SGI] - \textit{stratum griseum intermediale}
+	\item[ISO] - istota szara oko³owodoci¹gowa
+\end{itemize}
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.55]{SC_warstwy.png}
+	\end{center}
+	\caption{Struktura warstwowa wzgórka czworaczego górnego \citep{SC_warstwy}.}
+	\label{rys:SC_warstwy}
+\end{figure}
+\chapter{Pochodzenie danych doœwiadczalnych}
+\section{Dane doœwiadczalne}
+Dane wykorzystane w niniejszej pracy pochodz¹ z eksperymentów przeprowadzonych w Pracowni Neurobiologii Widzenia Instytutu Biologii Doœwiadczalnej PAN im. Marcelego Nenckiego w Warszawie. Zosta³y zebrane przez zespó³ doœwiadczalny sk³adaj¹cy siê z dra Andrzeja Foika i mgr in¿. Katarzyny ¯eber w okresie od wrzeœnia do grudnia 2014 r.
+
+W ka¿dym doœwiadczeniu wykorzystano szczura z gatunku Wistar. Zwierzê zosta³o znieczulone dootrzewnowym zastrzykiem z uretanu (2 ml/kg). W mózgu ka¿dego ze zwierz¹t umieszczono 4 elektrody:
+\begin{itemize}
+	\item 1 po stronie ipsilateralnej wzglêdem bodŸca -- w korze wzrokowej (CxI)
+	\item 3 po stronie konralateralnej wzglêdem bodŸca:
+	\begin{itemize}
+		\item w korze wzrokowej (CxC)
+		\item we wzgórku czworaczym górnym (SC)
+		\item w j¹drze kolankowatym bocznym (LGN)
+	\end{itemize}
+\end{itemize}
+Na ka¿dej elektrodzie znajdowa³o siê od 7 do 16 kontaktów. Oba zestawy danych zawiera³y ró¿ne liczby kana³ów. W eksperymencie A do rejestracji aktywnoœci kory wzrokowej wykorzystano 16 kontaktów dla ka¿dej pó³kuli, a w eksperymencie B -- 8 kontaktów (kontakty by³y rozmieszczone 2-krotnie rzadziej.) W obu eksperymentach informacjê ze wzgórka czworaczego zbierano za pomoc¹ 7 kontaktów, a z j¹dra kolankowatego bocznego -- 8 kontaktów. 
+\section{Procedury eksperymentów}
+Zastosowano dwie ró¿ne procedury eksperymentalne opisane poni¿ej.
+\subsection{Eksperyment A}
+Co 15 minut prezentowano seriê bodŸców w postaci b³yskaj¹cego œwiat³a, którego Ÿród³o umieszczono blisko jednego oka (Rysunek \ref{rys:szczur}). Jako próbê kontroln¹ przyjêto pierwsz¹ rejestracjê, zak³adaj¹c, ¿e jest to odpowiedŸ w stanie nieprzyzwyczajonym do stymulacji. B³yski trwa³y 2 ms i pojawia³y siê z ró¿n¹ czêstotliwoœci¹ (przerwy wynosi³y od 2 do 2,13 s) 300 razy. Sygna³ zbierano co godzinê.
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.5]{szczur.png}
+	\end{center}
+	\caption{Schemat eksperymentu A.}
+	\label{rys:szczur}
+\end{figure}
+\subsection{Eksperyment B}
+Czterokrotnie przez pó³ sekundy stymulowano lewe oko pr¹dem elektrycznym za pomoc¹ niewielkiej elektrody umieszczonej na ga³ce ocznej (Rysunek \ref{rys:szczurB}). Amplituda pr¹du wynosi³a 2 mA, a czêstotliwoœæ 100 Hz. Nastêpnie stymulowano to samo oko bodŸcem œwietlnym w seriach po 200 b³ysków (takich jak w eksperymencie A) i co godzinê rejestrowano odpowiedŸ.
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.5]{sty_ele.png}
+	\end{center}
+	\caption{Schemat stymulacji elektrycznej przeprowadzanej podczas eksperymentu B.}
+	\label{rys:szczurB}
+\end{figure}
+\FloatBarrier
+ Na Rysunku \ref{rys:porownanie_paradygmatow} przedstawiono szkic przebiegów czasowych obu warunków doœwiadczalnych. Wykres A odnosi siê do eksperymentu A, a wykres B -- do eksperymentu B. Pionowe kreski oznaczaj¹ stymulacjê bodŸcem œwietlnym (w eksperymencie A powtórzeñ by³o 300 powtórzeñ, a w eksperymencie B -- 200.) Czerwona strza³ka oznacza moment wyst¹pienia stymulacji elektrycznej.
+\begin{figure}
+	\input{images/scheme.tex}
+	\caption{Przebiegi czasowe obu warunków doœwiadczalnych.}
+	\label{rys:porownanie_paradygmatow}
+\end{figure}
+\section{Przygotowanie danych do analizy}
+Sygna³ zosta³ zarejestrowany z czêstotliwoœci¹ 20 kHz, odfiltrowany pasmowo-przepustowo w przedziale 0,3 - 10 kHz oraz wzmocniony 500-krotnie przy u¿yciu wzmacniacza pr¹du zmiennego firmy A-M Systems\textsuperscript{TM} (\texttt{https://www.a-msystems.com/}).
+
+Uznano, ¿e tak wysoka czêstoœæ próbkowania nie jest potrzebna do dalszej analizy, dlatego zdecydowano siê zredukowaæ j¹ do czêstoœci 250 Hz. W tym celu trzykrotnie na przemian filtrowano sygna³ dolnoprzepustowym filtrem Butterwortha (czêstoœci odciêcia: 2,5 kHz -- II rz¹d, 500 Hz i  100 Hz -- I rz¹d) i decymowano (ang. \textit{downsampling}). Kolejnym krokiem by³o odfiltrowanie artefaktów pochodz¹cych od napiêcia sieciowego (pasmowo-zaporowy filtr Butterwortha I rzêdu w przedziale 49,5-50,5 Hz) i usuniêcie niskich czêstoœci (górnoprzepustowy filtr Butterwortha I rzêdu o czêstoœci odciêcia 1 Hz). Nastêpnie ka¿d¹ próbkê znormalizowano poprzez odjêcie œredniej z ca³ego zapisu dla danego kana³u i podzielenie przez odchylenie standardowe.
+
+Filtry Butterwortha zosta³y wybrane ze wzglêdu na to, ¿e tylko w niewielkim stopniu zniekszta³caj¹ sygna³. Odbywa siê to jednak kosztem ni¿szej skutecznoœci filtracji. Filtrowano za pomoc¹ funkcji filtfilt, poniewa¿ nie zmienia fazy sygna³u wejœciowego.
+
+Tak przygotowanie dane pociêto na odcinki od -0,2 s do 1 s (gdzie 0 by³o momentem wyst¹pienia bodŸca) i uœredniono po realizacjach.
+
+Do dalszej analizy wybrano po 4 kana³y z kory wzrokowej (zarówno kontra- i ispilateralnej wzglêdem bodŸca) i wzgórka czworaczego oraz jeden kana³ z cia³a kolankowatego bocznego. Zmniejszenie liczby kana³ów by³o niezbêdne z dwóch powodów:
+\begin{itemize}
+	\item czêœæ kontaktów na elektrodach nie dzia³a³a poprawnie -- rejestrowa³ siê szum, a nie w³aœciwy sygna³
+	\item kana³y warstw le¿¹cych jedna nad drug¹ by³y bardzo podobne
+\end{itemize}
+Wyboru dokonano na podstawie analizy uœrednionych potencja³ów, patrz Sekcja \ref{sec:zast_pot}.
+\chapter{Metodologia}
+\section{Uœrednianie potencja³ów wywo³anych}
+\subsection{Opis metody}
+VEP (z ang. \textit{Visual Evoked Potential}) jest szczególnym przypadkiem potencja³ów wywo³anych stanu ustalonego, gdzie stymulacja odbywa siê za pomoc¹ fali œwietlnej. Stymulacj¹ jest seria krótkotrwa³ych b³ysków œwiat³a powtarzaj¹cych siê w sposób œciœle periodyczny. W za³o¿eniu spontaniczna aktywnoœæ ECoG jest procesem stochastycznym (niezale¿nym, stacjonarnym szumem o œredniej zero), a odpowiedŸ mózgu na ka¿dy z kolejnych bodŸców jest niezmienna. Wtedy sygna³ mierzony w $i$-tej realizacji mo¿emy wyraziæ jako:
+\begin{equation}
+x_i(t) = s(t) + n_i(t),
+\end{equation}
+gdzie $s(t)$ jest rzeczywistym sygna³em, a $n_i(t)$ -- sk³adow¹ szumu. Po uœrednieniu~$N$ realizacji otrzymuje siê:
+\begin{equation}
+\bar{x}(t) = \frac{1}{N} \sum_{i=1}^{N} x_i(t) = s(t) + \frac{1}{N}\sum_{i=1}^{N} n_i(t).
+\end{equation}
+Dla szumu o œredniej zero, wartoœæ oczekiwana wynosi:
+\begin{equation}
+E\left[ \frac{1}{N}\sum_{i=1}^{N} n_i(t)\right] = 0, 
+\end{equation}
+z czego wynika, ¿e dla uœrednionego sygna³u $E\left[ \bar{x}(t) \right] = s(t).$
+
+Na Rysunku \ref{rys:gabor} przedstawiono kolejno:
+\begin{itemize}
+	\item funkcjê Gabora przed dodaniem szumu
+	\item funkcjê Gabora z na³o¿onym szumem
+	\item sygna³ uœredniony.
+\end{itemize}
+Widaæ, ¿e na ostatnim wykresie uda³o siê odzyskaæ pierwotny kszta³t.
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=\columnwidth]{gabor.png}
+	\end{center}
+	\caption{Na wykresie A narysowano funkcjê Gabora o czêstotliwoœci 10 Hz, odchyleniu standardowym $\sigma_g$~=~0.2 i amplitudzie $A$~=~1. Wykres B przedstawia tê sam¹ funkcjê co wykres A po dodaniu 30 sk³adowych szumowych z rozk³adu normalnego o œredniej $m_{sz}$ = 0 i odchyleniu standardowym $\sigma_{sz}$ = 0.4. Wykres C to 1000 uœrednionych sygna³ów z wykresu~B.}
+	\label{rys:gabor}
+\end{figure}
+\subsection{Zastosowanie metody}\label{sec:zast_pot}
+Dane z ka¿dego zestawu uœredniono po realizacjach i oddzielenie analizowano kana³y odpowiadaj¹ce ka¿dej strukturze. W pierwszej kolejnoœci odrzucono ,,puste'' kana³y, których œrednia na ca³ym badanym wycinku oscylowa³a wokó³ zera. Nastêpnie szukano ,,przegiêcia'', czyli odwrócenia potencja³u w okolicy odpowiedzi na bodziec (czas 0-0,1 s). Jeœli to by³o mo¿liwe, wybierano kana³y bez artefaktu w momencie wyst¹pienia bodŸca.
+\subsection{Statystyka}
+Spoœród wszystkich realizacji 6 razy losowano bez powtórzeñ 50 realizacji i uœredniano. Nastêpnie liczono maksymaln¹ ró¿nicê miêdzy najwy¿szym i najni¿szym punktem na przedziale 0 -- 0,1 s. Po sprawdzeniu testem Shapiro-Wilka, ¿e tak policzone œrednie amplitudy nale¿¹ do rozk³adu normalnego, przeprowadzano test T studenta, by siê przekonaæ, czy wzrost amplitudy pomiêdzy kontrol¹ a ka¿d¹ kolejn¹ godzin¹ rejestracji jest istotny statystycznie.
+\newpage
+\section{Wielokana³owy model autoregresyjny}
+Sygna³y pochodz¹ce z rejestracji aktywnoœci mózgu mog¹ byæ opisywane przez model AR (ang. \textit{autoregressive model}). Za³o¿eniem tego modelu jest to, ¿e na podstawie $p$ pierwszych próbek mo¿na przewidzieæ wartoœæ $p+1$ próbki:
+\begin{equation}
+x(t) =  \sum_{i=1}^{p}a_ix(t-i) + e(t),
+\end{equation}
+gdzie $a_i$ jest $i$-tym wspó³czynnikiem, a $e(t)$ -- sk³adow¹ szumow¹. \newline
+Jeœli podczas eksperymentu rejestruje siê dane równoczeœnie z kilku Ÿróde³, mo¿na przypuszczaæ, ¿e s¹ ze sob¹ zwi¹zane. Wtedy sygna³ z ka¿dego Ÿród³a w $i$-tej chwili czasu traktuje siê jak z³o¿enie liniowe $p$ poprzednich próbek wszystkich Ÿróde³:
+\begin{equation}
+\sum_{i=1}^{p}A(t)X(t-i) = E(t).
+\end{equation}
+Po przetransformowaniu powy¿szego równania do dziedziny czêstoœci za pomoc¹ transformacji~$Z$, otrzymuje siê:
+\begin{equation}
+A(z)X(z) = E(z),
+\end{equation}
+gdzie $z = e^{2\pi if\Delta t}$. Macierz wariancji szumów $V$ mo¿na zapisaæ:
+\begin{equation}
+V = E(f)*E(f)^{+},
+\end{equation}
+Znak $^{+}$ oznacza transpozycjê macierzy po³¹czon¹ ze sprzê¿eniem zespolonym jej elementów.
+Dla okreœlenia rzêdu modelu ($p$) stosuje siê ró¿nego rodzaju kryteria. Jednym z nich jest kryterium Akaikego \citep{jarek}:
+\begin{equation}
+AIC(p) = ln(det(V))+2\frac{p}{N}.
+\end{equation}
+\section{Po³¹czenia funkcjonalne}
+Zale¿noœci miêdzy dostêpnymi kana³ami (dane z kilku Ÿróde³ zbierane równoczeœnie) mo¿na badaæ na wiele sposobów. Jedn¹ z podstawowych miar podobieñstwa miêdzy kana³ami jest koherencja. Wad¹ tej funkcji jest to, ¿e nie pozwala stwierdziæ kierunku oddzia³ywania miêdzy danymi Ÿród³owymi. ¯eby móc odpowiedzieæ na pytanie, który kana³ generuje informacjê, a który j¹ tylko odbiera, skorzystano z kierunkowej funkcji przejœcia, bazuj¹cej na przyczynowoœci w sensie Grangera.
+
+\subsection{Przyczynowoœæ w sensie Grangera}
+Definicja przyczynowoœci bazuje na przewidywalnoœci szeregów czasowych. Przy za³o¿eniu, ¿e wartoœæ sygna³u x da siê przewidzieæ na podstawie $p$ poprzednich wartoœci otrzymuje siê:
+\begin{equation}
+x(t) = \sum_{i=1}^{p}A_1(i)x(t-i)+E_1(t),
+\end{equation}
+gdzie $A_1$ jest macierz¹ wspó³czynników, a $E_1$ -- macierz¹ wartoœci szumowych.
+
+Przy takim zapisie d¹¿y siê do tego, by wartoœci wspó³czynników by³y jak najwiêksze. Tym samym mo¿emy traktowaæ macierz wartoœci szumowych jako miarê dopasowania -- im czynnik szumowy jest mniejszy, tym dane s¹ lepiej opisywane przez model.
+	
+Przy za³o¿eniu, ¿e na wartoœæ sygna³u x ma równie¿ wp³yw sygna³ y, mo¿na zapisaæ:
+\begin{equation}
+x(t) = \sum_{i=1}^{p}A_1(i)x(t-i)+\sum_{i=1}^{p}A_2(i)y(t-i)+E_2(t).
+\end{equation}
+Jeœli var$(E_1)$ $>$ var$(E_2)$, to mo¿na powiedzieæ, ¿e w sensie przyczynowoœci Grangera sygna³ x jest zale¿ny od sygna³u y. W przypadku gdy obie wartoœci s¹ porównywalne to znaczy, ¿e dodatkowa informacja o wartoœciach sygna³u y nie wnios³a nic do opisu wartoœci sygna³u x, a wiêc sygna³ x jest niezale¿ny od sygna³u y.
+\subsection{Kierunkowa funkcja przejœcia -- opis metody}
+Kierunkowa funkcja przejœcia (z ang. \textit{Direct Transfer Function}) opiera siê o za³o¿enie, ¿e dane s¹ dobrze opisywane przez wielokana³owy model autoregresyjny (MVAR). Definiuje siê j¹ przez macierz przejœcia modelu $H$ dan¹ wzorem: $H = A^{-1}$.
+
+Kierunkowa funkcja przejœcia w wersji nieznormalizowanej:
+\begin{equation}
+{NDTF}_{i\to j}^2 (f) = {\left|H_{ij}(f) \right|}^2
+\end{equation}
+Znormalizowana kierunkowa funkcja przejœcia:
+\begin{equation}
+{DTF}_{i\to j}^2 (f) = \frac{{\left|H_{ij}(f) \right|}^2}{\sum_{m=1}^{k}{\left|H_{im}(f) \right|}^2 }
+\end{equation}
+\subsection{Zastosowanie metody}
+Dla danych z obu eksperymentów wybrano model 4 rzêdu na podstawie kryterium Akaikego. Dla wybranych 13 kana³ów policzono NDTF w czasie, gdzie rozmiar okna wynosi³ 25 próbek, a przesuniêcie -- 5. Nastêpnie wybrano trzy zakresy czêstoœci, w których analizowano sygna³: 
+\begin{itemize}
+	\item {[1-10]} Hz
+	\item {[10-30]} Hz
+	\item {[20-40]} Hz
+\end{itemize}
+\subsection{Statystyka}
+Istotnoœæ statystyczn¹ sprawdzano na postawie bootstrapu: szacowania rozk³adu przy pomocy wielokrotnego (tu 200 razy) losowania ze zwracaniem z danej próby. Analizowany przedzia³ by³ najmniejszym mo¿liwym przedzia³em, w którym mieœci³y siê wszystkie próbki z 95\% przedzia³u ufnoœci dla danego zakresu czêstoœci.
+\chapter{Wyniki}
+\section{Uœrednianie potencja³ów}
+Na Rysunku \ref{rys:usrednione_CxC} przedstawiono uœrednianie potencja³ów. Przed uœrednieniem dane s¹ chaotyczne, dopiero po uœrednieniu uwidacznia siê kszta³t odpowiedzi na bodziec. Pomiêdzy kana³ami CxC4 i CxC8 widoczne jest przegiêcie.
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.7]{usrednione_CxC.png}
+	\end{center}
+	\caption{Eksperymentu A przed treningiem wzrokowym (kontrola) -- 4 wybrane kana³y kontralateralnej kory wzrokowej (CxC). W kolumnie A przedstawiono 3 pojedyncze realizacje, a w kolumnie B --  uœrednione potencja³y wywo³ane po wszystkich realizacjach.}
+	\label{rys:usrednione_CxC}
+\end{figure}
+\subsection{Porównanie uœrednionych potencja³ów z CxC}
+Na Rysunkach \ref{rys:kontrola15_CxC} i \ref{rys:beta3_CxC} przedstawiono uœrednione po realizacjach potencja³y wywo³ane dla ró¿nych d³ugoœci treningu odpowiednio dla danych z eksperymentu A i B.
+\begin{figure}[htbp]
+	\begin{center}
+		\includegraphics[scale=0.8]{kontrola15_CxC.png}
+	\end{center}
+	\caption{Dane pochodz¹ z eksperymentu A -- 4 wybrane kana³y kontralateralnej kory wzrokowej (CxC). Kolorami zaznaczono uœrednione po realizacjach potencja³y wywo³ane przed treningiem wzrokowy, po jednej, dwóch i trzech godzinach.}
+	\label{rys:kontrola15_CxC}
+\end{figure}
+\FloatBarrier
+Na wykresach widoczne jest zwiêkszanie siê amplitudy odpowiedzi na bodziec wraz z d³ugoœci¹ treningu wzrokowego.
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.8]{beta3_CxC.png}
+	\end{center}
+	\caption{Dane pochodz¹ z eksperymentu B -- 4 wybrane kana³y kontralateralnej kory wzrokowej (CxC). Kolorami zaznaczono uœrednione po realizacjach potencja³y wywo³ane przed treningiem wzrokowy, po jednej, dwóch i trzech godzinach.}
+	\label{rys:beta3_CxC}
+\end{figure}
+\FloatBarrier Aby sprawdziæ, czy zwiêkszenie jest rzeczywiœcie istotne, przeprowadzono analizê statystyczn¹. Dla obu zestawów danych test Shapiro-Wilka wykaza³, ¿e œrednie amplitudy pochodz¹ z rozk³adu normalnego. Dla ka¿dego kana³u i dla ka¿dego czasu treningu, sprawdzono testem T studenta, czy wzrost amplitudy wzglêdem kontroli jest istotny statystycznie.
+
+Wyniki testów zamieszczono w Tabeli \ref{tab:kontrola_test_T} dla eksperymentu A i w Tabeli \ref{tab:beta_test_T} dla eksperymentu B.
+
+Na Rysunkiach \ref{rys:kontrola15_stat_CxC} i \ref{rys:beta3_stat_CxC} przedstawiono œrednie amplitudy dla 4 wybranych kana³ów kontralateralnej kory wzrokowej (CxC). W Tabeli \ref{tab:kontrola15_stat_CxC} zamieszczono wartoœci liczbowe z Rysunku \ref{rys:kontrola15_stat_CxC}, a w Tabeli \ref{tab:beta3_stat_CxC} -- wartoœci liczbowe z Rysunku \ref{rys:beta3_stat_CxC}.
+\begin{figure}[htdp]
+	\begin{center}
+		\includegraphics[scale=0.6]{kontrola15_stat_CxC.png}
+	\end{center}
+	\caption{Eksperyment A: Œrednia amplituda i odchylenie standardowe dla ró¿nych d³ugoœci treningu wzrokowego.}
+	\label{rys:kontrola15_stat_CxC}
+\end{figure}
+
+\begin{table}[htdp]
+	\caption{Œrednia amplituda i odchylenie standardowe.}
+	\begin{center}
+		\begin{tabularx}{0.9\textwidth}{X C C C C C}
+			\toprule
+			\textbf{czas} & \textbf{CxC1} & \textbf{CxC4} & \textbf{CxC8} & \textbf{CxC10} \\
+			\midrule
+			kontrola & 0,68 $\pm$ 0,02 & 0,54 $\pm$	0,04 & 0,52 $\pm$ 0,01 & 0,44 $\pm$ 0,02\\
+			po 1 h & 0,71 $\pm$	0,05 & 0,48 $\pm$ 0,02 & 0,91 $\pm$	0,04 & 0,87 $\pm$ 0,06\\
+			po 2 h & 0,61 $\pm$ 0,01 & 0,74 $\pm$ 0,03  & 1,31 $\pm$ 0,04 & 1,05 $\pm$ 0,04\\
+			po 3 h & 1,34 $\pm$ 0,08 & 1,54	$\pm$ 0,16 & 2,42 $\pm$ 0,03 & 1,77 $\pm$ 0,05\\
+			\bottomrule
+		\end{tabularx}
+	\end{center}
+	\label{tab:kontrola15_stat_CxC}
+\end{table}
+\FloatBarrier
+
+\begin{table}[htdp]
+	\caption{Wartoœci testu T studenta dla danych z eksperymentu A.}
+	\begin{center}
+		\begin{tabularx}{0.9\textwidth}{l C C C C C}
+			\toprule
+			\textbf{} & \textbf{CxC1} & \textbf{CxC4} & \textbf{CxC8} & \textbf{CxC10} \\
+			\midrule
+			kontrola vs po 1 h & 0,394 & 0,180 & 0,002 & 0,002\\
+			kontrola vs po 2 h & 0,093 & 0,002 & 0,002 & 0,002\\
+			kontrola vs po 3 h & 0,002 & 0,002 & 0,002 & 0,002\\
+			\bottomrule
+		\end{tabularx}
+	\end{center}
+	\label{tab:kontrola_test_T}
+\end{table}
+
+\begin{figure}[htdp]
+	\begin{center}
+		\includegraphics[scale=0.6]{beta3_stat_CxC.png}
+	\end{center}
+	\caption{Eksperyment B: Œrednia amplituda i odchylenie standardowe dla kolejnych czasów.}
+	\label{rys:beta3_stat_CxC}
+\end{figure}
+
+\begin{table}[htdp]
+	\caption{Œrednia amplituda i odchylenie standardowe.}
+	\begin{center}
+		\begin{tabularx}{0.9\textwidth}{X C C C C C}
+			\toprule
+			\textbf{czas} & \textbf{CxC1} & \textbf{CxC3} & \textbf{CxC5} & \textbf{CxC6} \\
+			\midrule
+			kontrola & 0,63 $\pm$ 0,02 & 0,64 $\pm$	0,02 & 0,71 $\pm$ 0,01 & 0,79 $\pm$ 0,01\\
+			po 1 h & 0,45 $\pm$	0,01 & 1,13 $\pm$ 0,01 & 1,10 $\pm$	0,02 & 1,15 $\pm$ 0,02\\
+			po 2 h & 1,02 $\pm$ 0,01 & 0,98 $\pm$ 0,02  & 0,82 $\pm$ 0,01 & 0,85 $\pm$ 0,01\\
+			po 3 h & 2,38 $\pm$ 0,08 & 2,02	$\pm$ 0,02 & 1,88 $\pm$ 0,06 & 2,11 $\pm$ 0,02\\
+			\bottomrule
+		\end{tabularx}
+	\end{center}
+	\label{tab:beta3_stat_CxC}
+\end{table}
+
+\begin{table}[htdp]
+	\caption{Wartoœci testu T studenta dla danych z eksperymentu B.}
+	\begin{center}
+		\begin{tabularx}{0.9\textwidth}{l C C C C C}
+			\toprule
+			\textbf{} & \textbf{CxC1} & \textbf{CxC3} & \textbf{CxC5} & \textbf{CxC6} \\
+			\midrule
+			kontrola vs po 1 h & 0,002 & 0,002 & 0,002 & 0,002\\
+			kontrola vs po 2 h & 0,002 & 0,002 & 0,002 & 0,026\\
+			kontrola vs po 3 h & 0,002 & 0,002 & 0,002 & 0,002\\
+			\bottomrule
+		\end{tabularx}
+	\end{center}
+	\label{tab:beta_test_T}
+\end{table}
+
+\FloatBarrier
+
+Na podstawie tych wyników mo¿na stwierdziæ, ¿e wzrost amplitudy wraz z d³ugoœci¹ treningu wzrokowego jest istotny statystycznie. Nie da siê jednak jednoznacznie okreœliæ, ¿e stymulacja elektryczna w eksperymencie B przyczyni³a siê do zwiêkszenia amplitudy miêdzy kontrol¹ a kolejnymi rejestracjami.
+\subsection{Porównanie uœrednionych potencja³ów z LGN}
+W przypadku j¹dra kolankowatego bocznego (LGN) dla obu eksperymentów wybrano kana³, który charakteryzowa³ siê najwy¿sz¹ amplitud¹ (Rysunek \ref{rys:porownanie_LGN}).
+\begin{figure}[h]
+	\begin{subfigure}{.57\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{porow_LGN.png}
+		\caption{Wykres w czasie}
+		\label{rys:porow_LGN}
+	\end{subfigure}%
+	\begin{subfigure}{.43\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{porow_stat_LGN.png}
+		\caption{Œrednia i odchylenie standardowe}
+		\label{rys:porow_stat_LGN}
+	\end{subfigure}
+	\caption{Porównanie uœrednionych potencja³ów z LGN.}
+	\label{rys:porownanie_LGN}
+	
+\end{figure}
+\begin{table}[htdp]
+	\caption{Œrednia amplituda i odchylenie standardowe.}
+	\begin{center}
+		\begin{tabularx}{0.6\textwidth}{l C C }
+			\toprule
+			\textbf{czas} & \textbf{A: CxC8} & \textbf{B: CxC4}\\
+			\midrule
+			kontrola & 0,26 $\pm$ 0,01 & 0,31 $\pm$	0,01 \\
+			po 1 h & 0,29 $\pm$	0,02 & 0,56 $\pm$ 0,03 \\
+			po 2 h & 0,37 $\pm$ 0,01 & 0,50 $\pm$ 0,02\\
+			po 3 h & 0,89 $\pm$ 0,01 & 1,15	$\pm$ 0,03\\
+			\bottomrule
+		\end{tabularx}
+	\end{center}
+	\label{tab:porow_stat_LGN}
+\end{table}
+
+\begin{table}[htdp]
+	\caption{Wartoœci testu T studenta.}
+	\begin{center}
+		\begin{tabularx}{0.5\textwidth}{l C C}
+			\toprule
+			\textbf{} & \textbf{A: CxC8} & \textbf{B: CxC4}\\
+			\midrule
+			kontrola vs po 1 h & 0,310 & 0,002 \\
+			kontrola vs po 2 h & 0,002 & 0,002\\
+			kontrola vs po 3 h & 0,002 & 0,002\\
+			\bottomrule
+		\end{tabularx}
+	\end{center}
+	\label{tab:beta_test_T}
+\end{table}
+
+\section{Po³¹czenia funkcjonalne}
+\subsection{Po³¹czenia z CxC do LGN}
+Na Rysunkach \ref{rys:1_10_CxC_LGN}, \ref{rys:10_30_CxC_LGN} i \ref{rys:20_40_CxC_LGN} przedstawiono wartoœci funkcji NDTF dla kolejnych zakresów czêstoœci. Dla czêstoœci 1-10 Hz dla danych z eksperymentu A (Rysunek \ref{rys:1_10_kon_CxC_LGN}) wartoœæ funkcji NDTF w przedziale od 0 do 0,2 s jest bliska zeru. Natomiast dla danych z eksperymentu B (Rysunek \ref{rys:1_10_beta_CxC_LGN}) wystêpuje  nieznaczny pik zaraz po podaniu bodŸca (czas 0-0,1 s) oraz wysoki pik oko³o 0,2 s po 3 godzinach treningu wzrokowego. 
+
+\begin{figure}[h]
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{kontrola15_1-10_z_CxC8_do_LGN8.png}
+		\caption{Bez stymulacji elektrycznej}
+		\label{rys:1_10_kon_CxC_LGN}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{beta3_1-10_z_CxC5_do_LGN4.png}
+		\caption{Po stymulacji elektrycznej}
+		\label{rys:1_10_beta_CxC_LGN}
+	\end{subfigure}
+	\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 1-10 Hz.}
+	\label{rys:1_10_CxC_LGN}
+\end{figure}
+\FloatBarrier
+Podobne obserwacje mo¿na poczyniæ dla zakresu czêstoœci 10-30 Hz i 20-40 Hz. W obu przypadkach, dla danych z eksperymentu A (Rysunki \ref{rys:10_30_kon_CxC_LGN} i \ref{rys:20_40_kon_CxC_LGN}) wartoœæ funkcji NDTF jest niewiele wiêksza od zera, natomiast po stymulacji elektrycznej (Rysunki \ref{rys:10_30_beta_CxC_LGN} i \ref{rys:20_40_beta_CxC_LGN}) widoczne s¹ wyraŸne piki w przedziale 0-0,05 s i w 0,02 s po wyst¹pieniu bodŸca. 
+\begin{figure}[h]
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{kontrola15_10-30_z_CxC8_do_LGN8.png}
+		\caption{Bez stymulacji elektrycznej}
+		\label{rys:10_30_kon_CxC_LGN}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{beta3_10-30_z_CxC5_do_LGN4.png}
+		\caption{Po stymulacji elektrycznej}
+		\label{rys:10_30_beta_CxC_LGN}
+	\end{subfigure}
+	\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 10-30 Hz.}
+	\label{rys:10_30_CxC_LGN}
+\end{figure}
+\begin{figure}[h]
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{kontrola15_20-40_z_CxC8_do_LGN8.png}
+		\caption{Bez stymulacji elektrycznej}
+		\label{rys:20_40_kon_CxC_LGN}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{beta3_20-40_z_CxC5_do_LGN4.png}
+		\caption{Po stymulacji elektrycznej}
+		\label{rys:20_40_beta_CxC_LGN}
+	\end{subfigure}
+	\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 20-40 Hz.}
+	\label{rys:20_40_CxC_LGN}
+\end{figure}
+\FloatBarrier
+%\newpage
+\subsection{Po³¹czenia z CxC do SC}
+\begin{figure}[h]
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{kontrola15_1-10_z_CxC8_do_SC4.png}
+		\caption{Bez stymulacji elektrycznej}
+		\label{rys:kon_CxC_SC}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{beta3_1-10_z_CxC5_do_SC4.png}
+		\caption{Po stymulacji elektrycznej}
+		\label{rys:beta_CxC_SC}
+	\end{subfigure}
+	\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 1-10 Hz.}
+	\label{rys:1_10_CxC_SC}
+\end{figure}
+\begin{figure}[h]
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{kontrola15_10-30_z_CxC8_do_SC4.png}
+		\caption{Bez stymulacji elektrycznej}
+		\label{rys:kon_CxC_SC}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{beta3_10-30_z_CxC5_do_SC4.png}
+		\caption{Po stymulacji elektrycznej}
+		\label{rys:beta_CxC_SC}
+	\end{subfigure}
+	\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 10-30 Hz.}
+	\label{rys:10_30_CxC_SC}
+\end{figure}
+\begin{figure}[h]
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{kontrola15_20-40_z_CxC8_do_SC4.png}
+		\caption{Bez stymulacji elektrycznej}
+		\label{rys:kon_CxC_SC}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{beta3_20-40_z_CxC5_do_SC4.png}
+		\caption{Po stymulacji elektrycznej}
+		\label{rys:beta_CxC_SC}
+	\end{subfigure}
+	\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 20-40 Hz.}
+	\label{rys:20-40_CxC_SC}
+\end{figure}
+\FloatBarrier
+%\newpage
+\subsection{Po³¹czenia z SC do CxC}
+\begin{figure}[h]
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{kontrola15_1-10_z_SC2_do_CxC10.png}
+		\caption{Bez stymulacji elektrycznej}
+		\label{rys:kon_SC_CxC}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{beta3_1-10_z_SC2_do_CxC8.png}
+		\caption{Po stymulacji elektrycznej}
+		\label{rys:beta_SC_CxC}
+	\end{subfigure}
+	\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 1-10 Hz.}
+	\label{rys:1_10_SC_CxC}
+\end{figure}
+\begin{figure}[h]
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{kontrola15_10-30_z_SC2_do_CxC10.png}
+		\caption{Bez stymulacji elektrycznej}
+		\label{rys:kon_SC_CxC}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{beta3_10-30_z_SC2_do_CxC8.png}
+		\caption{Po stymulacji elektrycznej}
+		\label{rys:beta_SC_CxC}
+	\end{subfigure}
+	\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 10-30 Hz.}
+	\label{rys:10_30_SC_CxC}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{kontrola15_20-40_z_SC2_do_CxC10.png}
+		\caption{Bez stymulacji elektrycznej}
+		\label{rys:kon_SC_CxC}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=1.\linewidth]{beta3_20-40_z_SC2_do_CxC8.png}
+		\caption{Po stymulacji elektrycznej}
+		\label{rys:beta_SC_CxC}
+	\end{subfigure}
+	\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 20-40 Hz.}
+	\label{rys:20_40_SC_CxC}
+\end{figure}
+
+\chapter{Dyskusja}
+Odniesienie do biologi po³¹czeñ.
+Ewentualne b³êdy i sugestie co mo¿na poprawiæ.
+
+
+\bibliography{bibliography}
+
+\end{document}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% coding: latin-2
+%%% End:
