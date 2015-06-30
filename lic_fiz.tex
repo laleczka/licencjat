@@ -47,7 +47,7 @@
 }
 
 % miesi¹c i~rok:
-\date{Czerwiec 2015}
+\date{Lipiec 2015}
 
 %Podaæ dziedzinê wg klasyfikacji Socrates-Erasmus:
 \dziedzina{
@@ -208,7 +208,7 @@
 	\chapter{Metodologia}
 	\section{Uœrednianie potencja³ów wywo³anych}
 	\subsection{Opis metody}
-	VEP (z ang. \textit{Visual Evoked Potential}) jest szczególnym przypadkiem potencja³ów wywo³anych stanu ustalonego, gdzie stymulacja odbywa siê za pomoc¹ fali œwietlnej. Stymulacj¹ jest seria krótkotrwa³ych b³ysków œwiat³a powtarzaj¹cych siê w sposób œciœle periodyczny. W za³o¿eniu spontaniczna aktywnoœæ ECoG jest procesem stochastycznym (niezale¿nym, stacjonarnym szumem o œredniej zero), a odpowiedŸ mózgu na ka¿dy z kolejnych bodŸców jest niezmienna. Wtedy sygna³ mierzony w $i$-tej realizacji mo¿emy wyraziæ jako:
+	VEP (z ang. \textit{Visual Evoked Potential}) jest szczególnym przypadkiem potencja³ów wywo³anych stanu ustalonego, gdzie stymulacja odbywa siê za pomoc¹ fali œwietlnej. W za³o¿eniu spontaniczna aktywnoœæ ECoG jest procesem stochastycznym (niezale¿nym, stacjonarnym szumem o œredniej zero), a odpowiedŸ mózgu na ka¿dy z kolejnych bodŸców jest niezmienna. Wtedy sygna³ mierzony w $i$-tej realizacji mo¿emy wyraziæ jako:
 	\begin{equation}
 		x_i(t) = s(t) + n_i(t),
 	\end{equation}
@@ -237,9 +237,16 @@
 		\label{rys:gabor}
 	\end{figure}
 	\subsection{Zastosowanie metody}\label{sec:zast_pot}
-	Dane z ka¿dego zestawu uœredniono po realizacjach i oddzielenie analizowano kana³y odpowiadaj¹ce ka¿dej strukturze. W pierwszej kolejnoœci odrzucono ,,puste'' kana³y, których œrednia na ca³ym badanym wycinku oscylowa³a wokó³ zera. Nastêpnie szukano ,,przegiêcia'', czyli odwrócenia potencja³u w okolicy odpowiedzi na bodziec (czas 0-0,1 s). Jeœli to by³o mo¿liwe, wybierano kana³y bez artefaktu w momencie wyst¹pienia bodŸca.
+	Dane z ka¿dego zestawu danych uœredniono po realizacjach i oddzielenie analizowano kana³y odpowiadaj¹ce ka¿dej strukturze mózgu. W pierwszej kolejnoœci odrzucono kana³y, w których nie zaobserowano potencja³u wywo³anego (Rysunek \ref{rys:16_kanalow}). Nastêpnie szukano ,,przegiêcia'', czyli odwrócenia potencja³u w okolicy odpowiedzi na bodziec (czas 0-0,1 s). Jeœli to by³o mo¿liwe, wybierano kana³y bez artefaktu w momencie wyst¹pienia bodŸca.
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[width=\columnwidth]{16_kanalow.png}
+		\end{center}
+		\caption{Uœrednione potencja³y wywo³ane z CxC dla danych kontrolnych z eksperymentu A. Na kanale 2 widoczny jest artefakt od bodŸca (pik w 0 s), natomiast na kana³ach 12-16 brak widocznej odpowiedzi na bodziec. Na kanale 5 mo¿na zaobserowaæ odwrócenie potencja³u. Do dalszej analizy wybrano kana³y 1, 4, 8 i 10.}
+		\label{rys:16_kanalow}
+	\end{figure}
 	\subsection{Statystyka}
-	Spoœród wszystkich realizacji 6 razy losowano bez powtórzeñ 50 realizacji i uœredniano. Nastêpnie liczono maksymaln¹ ró¿nicê miêdzy najwy¿szym i najni¿szym punktem na przedziale 0 -- 0,1 s. Po sprawdzeniu testem Shapiro-Wilka, ¿e tak policzone œrednie amplitudy nale¿¹ do rozk³adu normalnego, przeprowadzano test T studenta, by siê przekonaæ, czy wzrost amplitudy pomiêdzy kontrol¹ a ka¿d¹ kolejn¹ godzin¹ rejestracji jest istotny statystycznie.
+	¯eby sprawdziæ, czy wzrost amplitudy miêdzy kontrol¹ (odpowiedzi¹ na bodziec bez treningu) a odpowiedzi¹ po ka¿dej kolejnej godzinie treningu jest istotny statystycznie, zastosowano metodê \emph{bootstrapu}. Spoœród fragmentów [0; 0,1] s dla wszystkich czasów treningu, losowano 1000 razy z powtórzeniami po 300 fragmentów. Wylosowane fragmenty sygna³ów uœredniano po realizacjach uzyskuj¹c œrednie potencja³y \emph{bootstrapowe}. Dla tak wyliczonych potencja³ów liczono amplitudê \emph{peak-to-peak}. 
 	\newpage
 	\section{Wielokana³owy model autoregresyjny}
 	Sygna³y pochodz¹ce z rejestracji aktywnoœci mózgu mog¹ byæ opisywane przez model AR (ang. \textit{autoregressive model}). Za³o¿eniem tego modelu jest to, ¿e na podstawie $p$ pierwszych próbek mo¿na przewidzieæ wartoœæ $p+1$ próbki:
