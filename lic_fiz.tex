@@ -234,22 +234,22 @@
 	Widaæ, ¿e na ostatnim wykresie uda³o siê odzyskaæ pierwotny kszta³t.
 	\begin{figure}[h]
 		\begin{center}
-			\includegraphics[width=\columnwidth]{gabor.png}
+			\includegraphics[scale = 0.7]{gabor.png}
 		\end{center}
 		\caption{Na wykresie A narysowano funkcjê Gabora o czêstotliwoœci 10 Hz, odchyleniu standardowym $\sigma_g$~=~0.2 i amplitudzie $A$~=~1. Wykres B przedstawia tê sam¹ funkcjê co wykres A po dodaniu 30 sk³adowych szumowych z rozk³adu normalnego o œredniej $m_{sz}$ = 0 i odchyleniu standardowym $\sigma_{sz}$ = 0.4. Wykres C to 1000 uœrednionych sygna³ów z wykresu~B.}
 		\label{rys:gabor}
 	\end{figure}
 	\subsection{Zastosowanie metody}\label{sec:zast_pot}
-	Dane z ka¿dego zestawu danych uœredniono po realizacjach i oddzielenie analizowano kana³y odpowiadaj¹ce ka¿dej strukturze mózgu. W pierwszej kolejnoœci odrzucono kana³y, w których nie zaobserowano potencja³u wywo³anego (Rysunek \ref{rys:16_kanalow}). Nastêpnie szukano ,,przegiêcia'', czyli odwrócenia potencja³u w okolicy odpowiedzi na bodziec (czas 0-0,1 s). Jeœli to by³o mo¿liwe, wybierano kana³y bez artefaktu w momencie wyst¹pienia bodŸca.
+	Dane z ka¿dego zestawu danych uœredniono po realizacjach i oddzielenie analizowano kana³y odpowiadaj¹ce ka¿dej strukturze mózgu. W pierwszej kolejnoœci odrzucono kana³y, w których nie zaobserwowano potencja³u wywo³anego. Nastêpnie szukano ,,przegiêcia'', czyli odwrócenia potencja³u w okolicy odpowiedzi na bodziec (czas 0-0,1 s). Jeœli to by³o mo¿liwe, wybierano kana³y bez artefaktu w momencie wyst¹pienia bodŸca (Rysunek \ref{rys:16_kanalow}).
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=\columnwidth]{16_kanalow.png}
 		\end{center}
-		\caption{Uœrednione potencja³y wywo³ane z CxC dla danych kontrolnych z eksperymentu A. Na kanale 2 widoczny jest artefakt od bodŸca (pik w 0 s), natomiast na kana³ach 12-16 brak widocznej odpowiedzi na bodziec. Na kanale 5 mo¿na zaobserowaæ odwrócenie potencja³u. Do dalszej analizy wybrano kana³y 1, 4, 8 i 10.}
+		\caption{Uœrednione potencja³y wywo³ane z CxC dla danych kontrolnych z eksperymentu~A. Na kanale 2 widoczny jest artefakt od bodŸca (pik w 0 s), natomiast na kana³ach 12-16 brak widocznej odpowiedzi na bodziec. Na kanale 5 mo¿na zaobserowaæ odwrócenie potencja³u. Do dalszej analizy wybrano kana³y 1, 4, 8 i 10.}
 		\label{rys:16_kanalow}
 	\end{figure}
 	\subsection{Statystyka}\label{statystyka}
-	¯eby sprawdziæ, czy wzrost amplitudy potencja³u wywo³anego miêdzy kontrol¹ a odpowiedzi¹ na bodziec po ka¿dej kolejnej godzinie treningu jest istotny statystycznie, zastosowano metodê bootstrapu. Spoœród fragmentów [0; 0,1] s dla wszystkich czasów treningu, losowano 1000 razy z powtórzeniami po 300 fragmentów. Wylosowane fragmenty sygna³ów uœredniano po realizacjach uzyskuj¹c œrednie potencja³y bootstrapowe. Dla tak wyliczonych potencja³ów liczono amplitudê \emph{peak-to-peak}. 
+	¯eby sprawdziæ, czy wzrost amplitudy potencja³u wywo³anego miêdzy kontrol¹ a odpowiedzi¹ na bodziec po ka¿dej kolejnej godzinie treningu jest istotny statystycznie, zastosowano metodê bootstrapu. Spoœród fragmentów [0; 0,1] s dla wszystkich czasów treningu, dwukrotnie losowano 1000 razy z powtórzeniami po 300 lub 200 fragmentów (odpowiednio dla eksperymentu A i B). Wylosowane fragmenty sygna³ów uœredniano po realizacjach uzyskuj¹c dwa œrednie potencja³y bootstrapowe. Dla wyliczonych potencja³ów liczono amplitudê \emph{peak-to-peak} i odejmowano uzyskuj¹c 1000-elementowy rozk³ad ró¿nic. Nastêpnie liczono ró¿nicê dla ka¿dej godziny treningu wzglêdem kontroli i porównywano z wartoœciami z bootstrapu.
 	\newpage
 	\section{Wielokana³owy model autoregresyjny}
 	Sygna³y pochodz¹ce z rejestracji aktywnoœci mózgu mog¹ byæ opisywane przez model AR (ang. \textit{autoregressive model}). Za³o¿eniem tego modelu jest to, ¿e na podstawie $p$ poprzednich próbek mo¿na przewidzieæ wartoœæ $p+1$ próbki:
@@ -313,7 +313,7 @@
 	Istotnoœæ statystyczn¹ sprawdzano na postawie bootstrapu: szacowania rozk³adu przy pomocy wielokrotnego (tu 200 razy) losowania ze zwracaniem z danej próby. Analizowany przedzia³ by³ najmniejszym mo¿liwym przedzia³em, w którym mieœci³y siê wszystkie próbki z 95\% przedzia³u ufnoœci dla danego zakresu czêstoœci.
 	\chapter{Wyniki}
 	\section{Uœrednianie potencja³ów}
-	Na Rysunku \ref{rys:usrednione_CxC} przedstawiono uœrednianie potencja³ów dla danych z eksperymentu A z~kontralateralnej kory wzrokowej. Przed uœrednieniem dane zawieraj¹ du¿y wk³ad od czynnoœci spontanicznej, która maskuje potencja³ wywo³any i dopiero po uœrednieniu uwidacznia siê kszta³t odpowiedzi na bodziec. Pomiêdzy kana³ami CxC4 i CxC8 widoczna jest zmiana polaryzacji.
+	Na Rysunku \ref{rys:usrednione_CxC} przedstawiono uœrednianie potencja³ów dla danych z eksperymentu A z~kontralateralnej kory wzrokowej przed treningiem wzrokowym. Przed uœrednieniem dane zawieraj¹ du¿y wk³ad od czynnoœci spontanicznej, która maskuje potencja³ wywo³any i dopiero po uœrednieniu uwidacznia siê kszta³t odpowiedzi na bodziec. Pomiêdzy kana³ami CxC4 i CxC8 widoczna jest zmiana polaryzacji.
 	\begin{figure}[htbp]
 		\begin{center}
 			\includegraphics[scale=0.65]{usrednione_CxC.png}
@@ -340,154 +340,182 @@
 		\caption{Eksperyment B: Uœrednione po realizacjach potencja³y wywo³ane. Kolorami zaznaczono kolejne godziny treningu.}
 		\label{rys:beta3_CxC}
 	\end{figure}
-	\FloatBarrier Aby sprawdziæ, czy zwiêkszenie jest rzeczywiœcie istotne, przeprowadzono analizê statystyczn¹ zgodnie z opisem zamieszczonym w Sekcji \ref{statystyka}.
+	\FloatBarrier 
+	Aby sprawdziæ, czy zwiêkszenie jest rzeczywiœcie istotne, przeprowadzono analizê statystyczn¹ zgodnie z opisem zamieszczonym w Sekcji \ref{statystyka}.
 	
-	Wyniki testów zamieszczono w Tabeli \ref{tab:kontrola_test_T} dla eksperymentu A i w Tabeli \ref{tab:beta_test_T} dla eksperymentu B.
-	
-	Na Rysunkiach \ref{rys:kontrola15_stat_CxC} i \ref{rys:beta3_stat_CxC} przedstawiono œrednie amplitudy dla 4 wybranych kana³ów kontralateralnej kory wzrokowej (CxC). W Tabeli \ref{tab:kontrola15_stat_CxC} zamieszczono wartoœci liczbowe z Rysunku \ref{rys:kontrola15_stat_CxC}, a w Tabeli \ref{tab:beta3_stat_CxC} -- wartoœci liczbowe z Rysunku \ref{rys:beta3_stat_CxC}.
-	\begin{figure}[htdp]
-		\begin{center}
-			\includegraphics[scale=0.6]{kontrola15_stat_CxC.png}
-		\end{center}
-		\caption{Eksperyment A: Œrednia amplituda i odchylenie standardowe dla ró¿nych d³ugoœci treningu wzrokowego.}
-		\label{rys:kontrola15_stat_CxC}
-	\end{figure}
-	
+	Wyniki testów zamieszczono w Tabeli \ref{tab:kontrola_CxC_P} dla eksperymentu A i w Tabeli \ref{tab:beta_CxC_P} dla eksperymentu~B.
 	\begin{table}[htdp]
-		\caption{Œrednia amplituda i odchylenie standardowe.}
+		\caption{P wartoœci dla CxC z eksperymentu A.}
 		\begin{center}
-			\begin{tabularx}{0.9\textwidth}{X C C C C C}
+			\begin{tabularx}{0.9\textwidth}{l C C C C}
 				\toprule
-				\textbf{czas} & \textbf{CxC1} & \textbf{CxC4} & \textbf{CxC8} & \textbf{CxC10} \\
+				\textbf{} & \textbf{CxC1} & \textbf{CxC4} & \textbf{CxC8} & \textbf{CxC10}
+				\\
 				\midrule
-				kontrola & 0,68 $\pm$ 0,02 & 0,54 $\pm$	0,04 & 0,52 $\pm$ 0,01 & 0,44 $\pm$ 0,02\\
-				po 1 h & 0,71 $\pm$	0,05 & 0,48 $\pm$ 0,02 & 0,91 $\pm$	0,04 & 0,87 $\pm$ 0,06\\
-				po 2 h & 0,61 $\pm$ 0,01 & 0,74 $\pm$ 0,03  & 1,31 $\pm$ 0,04 & 1,05 $\pm$ 0,04\\
-				po 3 h & 1,34 $\pm$ 0,08 & 1,54	$\pm$ 0,16 & 2,42 $\pm$ 0,03 & 1,77 $\pm$ 0,05\\
+				kontrola vs po 1 h & 0,706 & 0,612 & 0,001 & 0,001\\
+				kontrola vs po 2 h & 0,994 & 0,001 & 0,001 & 0,001\\
+				kontrola vs po 3 h & 0,001 & 0,001 & 0,001 & 0,001\\
 				\bottomrule
 			\end{tabularx}
 		\end{center}
-		\label{tab:kontrola15_stat_CxC}
-	\end{table}
-	\FloatBarrier
-	
-	\begin{table}[htdp]
-		\caption{Wartoœci testu T studenta dla danych z eksperymentu A.}
-		\begin{center}
-			\begin{tabularx}{0.9\textwidth}{l C C C C C}
-				\toprule
-				\textbf{} & \textbf{CxC1} & \textbf{CxC4} & \textbf{CxC8} & \textbf{CxC10} \\
-				\midrule
-				kontrola vs po 1 h & 0,394 & 0,180 & 0,002 & 0,002\\
-				kontrola vs po 2 h & 0,093 & 0,002 & 0,002 & 0,002\\
-				kontrola vs po 3 h & 0,002 & 0,002 & 0,002 & 0,002\\
-				\bottomrule
-			\end{tabularx}
-		\end{center}
-		\label{tab:kontrola_test_T}
-	\end{table}
-	
-	\begin{figure}[htdp]
-		\begin{center}
-			\includegraphics[scale=0.6]{beta3_stat_CxC.png}
-		\end{center}
-		\caption{Eksperyment B: Œrednia amplituda i odchylenie standardowe dla kolejnych czasów.}
-		\label{rys:beta3_stat_CxC}
-	\end{figure}
-	
-	\begin{table}[htdp]
-		\caption{Œrednia amplituda i odchylenie standardowe.}
-		\begin{center}
-			\begin{tabularx}{0.9\textwidth}{X C C C C C}
-				\toprule
-				\textbf{czas} & \textbf{CxC1} & \textbf{CxC3} & \textbf{CxC5} & \textbf{CxC6} \\
-				\midrule
-				kontrola & 0,63 $\pm$ 0,02 & 0,64 $\pm$	0,02 & 0,71 $\pm$ 0,01 & 0,79 $\pm$ 0,01\\
-				po 1 h & 0,45 $\pm$	0,01 & 1,13 $\pm$ 0,01 & 1,10 $\pm$	0,02 & 1,15 $\pm$ 0,02\\
-				po 2 h & 1,02 $\pm$ 0,01 & 0,98 $\pm$ 0,02  & 0,82 $\pm$ 0,01 & 0,85 $\pm$ 0,01\\
-				po 3 h & 2,38 $\pm$ 0,08 & 2,02	$\pm$ 0,02 & 1,88 $\pm$ 0,06 & 2,11 $\pm$ 0,02\\
-				\bottomrule
-			\end{tabularx}
-		\end{center}
-		\label{tab:beta3_stat_CxC}
+		\label{tab:kontrola_CxC_P}
 	\end{table}
 	
 	\begin{table}[htdp]
-		\caption{Wartoœci testu T studenta dla danych z eksperymentu B.}
+		\caption{P wartoœci dla CxC z eksperymentu B.}
 		\begin{center}
-			\begin{tabularx}{0.9\textwidth}{l C C C C C}
+			\begin{tabularx}{0.9\textwidth}{l C C C C}
 				\toprule
 				\textbf{} & \textbf{CxC1} & \textbf{CxC3} & \textbf{CxC5} & \textbf{CxC6} \\
 				\midrule
-				kontrola vs po 1 h & 0,002 & 0,002 & 0,002 & 0,002\\
-				kontrola vs po 2 h & 0,002 & 0,002 & 0,002 & 0,026\\
-				kontrola vs po 3 h & 0,002 & 0,002 & 0,002 & 0,002\\
+				kontrola vs po 1 h & 0,955 & 0,001 & 0,001 & 0,001\\
+				kontrola vs po 2 h & 0,001 & 0,001 & 0,127 & 0,134\\
+				kontrola vs po 3 h & 0,001 & 0,001 & 0,001 & 0,001\\
 				\bottomrule
 			\end{tabularx}
 		\end{center}
-		\label{tab:beta_test_T}
+		\label{tab:beta_CxC_P}
 	\end{table}
-	
 	\FloatBarrier
-	
 	Na podstawie tych wyników mo¿na stwierdziæ, ¿e wzrost amplitudy wraz z d³ugoœci¹ treningu wzrokowego jest istotny statystycznie. Nie da siê jednak jednoznacznie okreœliæ, ¿e stymulacja elektryczna w eksperymencie B przyczyni³a siê do zwiêkszenia amplitudy miêdzy kontrol¹ a kolejnymi rejestracjami.
+	\subsection{Porównanie uœrednionych potencja³ów z CxI}\label{CxI}
+	Na Rysunkach \ref{rys:kontrola15_CxI} i \ref{rys:beta3_CxI} przedstawiono uœrednione potencja³y wywo³ane odpowiednio dla danych z eksperymentu A i B.
+	
+	W zestawie danych z eksperymentu A s¹ widoczne artefakty od bodŸców (Rysunek \ref{rys:kontrola15_CxI}). Natomiast uœrednione potencja³y wywo³ane z eksperymentu B (Rysunek \ref{rys:beta3_CxI}) nie maj¹ typowego kszta³tu. 
+	
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[scale=0.8]{kontrola15_CxI.png}
+		\end{center}
+		\caption{Eksperyment A: Uœrednione po realizacjach potencja³y wywo³ane. Kolorami zaznaczono kolejne godziny treningu.}
+		\label{rys:kontrola15_CxI}
+	\end{figure}
+	\FloatBarrier
+	\begin{figure}[h]
+		\begin{center}
+			\includegraphics[scale=0.8]{beta3_CxI.png}
+		\end{center}
+		\caption{Eksperyment B: Uœrednione po realizacjach potencja³y wywo³ane. Kolorami zaznaczono kolejne godziny treningu.}
+		\label{rys:beta3_CxI}
+	\end{figure}
+	\FloatBarrier
+	W Tabelach \ref{tab:kontrola_CxI_P} i \ref{tab:beta_CxI_P} zestawiono wartoœci statystyki dla obu eksperymentów. Dla danych z eksperymentu A wzrost amplitudy jest bardziej istotny statystyczne ni¿ dla danych z eksperymentu B. Jest to prawdopodobnie  spowodowane nietypowym kszta³tem potencja³ów wywo³anych dla danych z zestawu B.
+	\begin{table}[htdp]
+		\caption{P wartoœci dla CxI z eksperymentu A.}
+		\begin{center}
+			\begin{tabularx}{0.9\textwidth}{l C C C C}
+				\toprule
+				\textbf{} & \textbf{CxI1} & \textbf{CxI3} & \textbf{CxI8} & \textbf{CxI10} \\
+				\midrule
+				kontrola vs po 1 h & 0,001 & 0,001 & 0,001 & 0,002\\
+				kontrola vs po 2 h & 0,709 & 0,001 & 0,001 & 0,003\\
+				kontrola vs po 3 h & 0,001 & 0,001 & 0,001 & 0,001\\
+				\bottomrule
+			\end{tabularx}
+		\end{center}
+		\label{tab:kontrola_CxI_P}
+	\end{table}
+	\FloatBarrier
+		\begin{table}[htdp]
+			\caption{P wartoœci dla CxI z eksperymentu B.}
+			\begin{center}
+				\begin{tabularx}{0.9\textwidth}{l C C C C}
+					\toprule
+					\textbf{} & \textbf{CxI1} & \textbf{CxI2} & \textbf{CxI4} & \textbf{CxI6} \\
+					\midrule
+					kontrola vs po 1 h & 0,506 & 0,670 & 0,115 & 0,001\\
+					kontrola vs po 2 h & 0,001 & 0,001 & 1     & 0,042\\
+					kontrola vs po 3 h & 0,001 & 0,001 & 0,001 & 0,001\\
+					\bottomrule
+				\end{tabularx}
+			\end{center}
+			\label{tab:beta_CxI_P}
+		\end{table}
+	\FloatBarrier
+	\subsection{Porównanie uœrednionych potencja³ów z SC}\label{SC}
+	Na Rysunkach \ref{rys:kontrola15_SC} i \ref{rys:beta3_SC} przedstawiono uœrednione potencja³y wywo³ane dla obu zestawów danych. Dla danych z eksperymentu A jest widoczne odwrócenie polaryzacji miêdzy kana³ami SC2 i SC4 (Rysunek \ref{rys:kontrola15_SC}), czego nie uda³o siê zaobserwowaæ dla SC z eksperymentu B (Rysunek \ref{rys:beta3_SC}). Mo¿na wiêc podejrzewaæ, ¿e elektroda zosta³a wbita zbyt g³êboko i nie uda³o siê zarejestrowaæ p³ytszych warstw.
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[scale=0.8]{kontrola15_SC.png}
+		\end{center}
+		\caption{Eksperyment A: Uœrednione po realizacjach potencja³y wywo³ane. Kolorami zaznaczono kolejne godziny treningu.}
+		\label{rys:kontrola15_SC}
+	\end{figure}
+	\begin{figure}[htbp]
+		\begin{center}
+			\includegraphics[scale=0.8]{beta3_SC.png}
+		\end{center}
+		\caption{Eksperyment B: Uœrednione po realizacjach potencja³y wywo³ane. Kolorami zaznaczono kolejne godziny treningu.}
+		\label{rys:beta3_SC}
+	\end{figure}
+	\FloatBarrier
+	W Tabelach \ref{tab:kontrola_SC_P} i \ref{tab:beta_SC_P} zamieszono wartoœci statystyki dla obu zestawów danych. W obu przypadkach widoczny jest istotny wzrost amplitudy.
+	\begin{table}[htdp]
+		\caption{P wartoœci dla SC z eksperymentu A.}
+		\begin{center}
+			\begin{tabularx}{0.9\textwidth}{l C C C C}
+				\toprule
+				\textbf{} & \textbf{SC1} & \textbf{SC2} & \textbf{SC4} & \textbf{SC6} \\
+				\midrule
+				kontrola vs po 1 h & 0,001 & 0,001 & 0,03  & 0,007\\
+				kontrola vs po 2 h & 0,001 & 0,001 & 0,001 & 0,001\\
+				kontrola vs po 3 h & 0,001 & 0,001 & 0,001 & 0,001\\
+				\bottomrule
+			\end{tabularx}
+		\end{center}
+		\label{tab:kontrola_SC_P}
+	\end{table}
+	\begin{table}[htdp]
+		\caption{P wartoœci dla SC z eksperymentu B.}
+		\begin{center}
+			\begin{tabularx}{0.9\textwidth}{l C C C C}
+				\toprule
+				\textbf{} & \textbf{SC1} & \textbf{SC2} & \textbf{SC4} & \textbf{SC6} \\
+				\midrule
+				kontrola vs po 1 h & 0,001 & 0,001 & 0,007  & 0,002\\
+				kontrola vs po 2 h & 0,001 & 0,001 & 0,001 & 0,001\\
+				kontrola vs po 3 h & 0,001 & 0,001 & 0,001 & 0,001\\
+				\bottomrule
+			\end{tabularx}
+		\end{center}
+		\label{tab:beta_SC_P}
+	\end{table}
+	\FloatBarrier
 	\subsection{Porównanie uœrednionych potencja³ów z LGN}
 	W przypadku j¹dra kolankowatego bocznego (LGN) dla obu eksperymentów wybrano kana³, który charakteryzowa³ siê najwy¿sz¹ amplitud¹ (Rysunek \ref{rys:porownanie_LGN}).
 	\begin{figure}[h]
-		\begin{subfigure}{.57\textwidth}
-			\centering
-			\includegraphics[width=1.\linewidth]{porow_LGN.png}
-			\caption{Wykres w czasie}
-			\label{rys:porow_LGN}
-		\end{subfigure}%
-		\begin{subfigure}{.43\textwidth}
-			\centering
-			\includegraphics[width=1.\linewidth]{porow_stat_LGN.png}
-			\caption{Œrednia i odchylenie standardowe}
-			\label{rys:porow_stat_LGN}
-		\end{subfigure}
+		\begin{center}
+			\includegraphics[width=0.7\columnwidth]{porownanie_LGN.png}
+		\end{center}
 		\caption{Porównanie uœrednionych potencja³ów z LGN.}
 		\label{rys:porownanie_LGN}
-		
 	\end{figure}
+	\FloatBarrier
+	W Tabeli \ref{tab:oba_LGN_P} przedstawiono wartoœci p testu statystycznego. P wartoœci dla danych z eksperymentu B s¹ du¿o ni¿sze ni¿ dla danych z eksperymentu A, co mo¿e œwiadczyæ o wp³ywie stymulacji elektrycznej na zwiêkszenie amplitudy potencja³u wywo³anego.
 	\begin{table}[htdp]
-		\caption{Œrednia amplituda i odchylenie standardowe.}
-		\begin{center}
-			\begin{tabularx}{0.6\textwidth}{l C C }
-				\toprule
-				\textbf{czas} & \textbf{A: CxC8} & \textbf{B: CxC4}\\
-				\midrule
-				kontrola & 0,26 $\pm$ 0,01 & 0,31 $\pm$	0,01 \\
-				po 1 h & 0,29 $\pm$	0,02 & 0,56 $\pm$ 0,03 \\
-				po 2 h & 0,37 $\pm$ 0,01 & 0,50 $\pm$ 0,02\\
-				po 3 h & 0,89 $\pm$ 0,01 & 1,15	$\pm$ 0,03\\
-				\bottomrule
-			\end{tabularx}
-		\end{center}
-		\label{tab:porow_stat_LGN}
-	\end{table}
-	
-	\begin{table}[htdp]
-		\caption{Wartoœci testu T studenta.}
+		\caption{P wartoœci dla LGN z eksperymentu A i B.}
 		\begin{center}
 			\begin{tabularx}{0.5\textwidth}{l C C}
 				\toprule
 				\textbf{} & \textbf{A: CxC8} & \textbf{B: CxC4}\\
 				\midrule
-				kontrola vs po 1 h & 0,310 & 0,002 \\
-				kontrola vs po 2 h & 0,002 & 0,002\\
-				kontrola vs po 3 h & 0,002 & 0,002\\
+				kontrola vs po 1 h & 0,201 & 0,001\\
+				kontrola vs po 2 h & 0,030 & 0,003\\
+				kontrola vs po 3 h & 0,001 & 0,001\\
 				\bottomrule
 			\end{tabularx}
 		\end{center}
-		\label{tab:beta_test_T}
+		\label{tab:oba_LGN_P}
 	\end{table}
 	
 	\section{Po³¹czenia funkcjonalne}
-	\subsection{Po³¹czenia z CxC do LGN}
-	Na Rysunkach \ref{rys:1_10_CxC_LGN}, \ref{rys:10_30_CxC_LGN} i \ref{rys:20_40_CxC_LGN} przedstawiono wartoœci funkcji NDTF dla kolejnych zakresów czêstoœci. Dla czêstoœci 1-10 Hz dla danych z eksperymentu A (Rysunek \ref{rys:1_10_kon_CxC_LGN}) wartoœæ funkcji NDTF w przedziale od 0 do 0,2 s jest bliska zeru. Natomiast dla danych z eksperymentu B (Rysunek \ref{rys:1_10_beta_CxC_LGN}) wystêpuje  nieznaczny pik zaraz po podaniu bodŸca (czas 0-0,1 s) oraz wysoki pik oko³o 0,2 s po 3 godzinach treningu wzrokowego. 
+	W analizie po³¹czeñ funkcjonalnych pominiêto analizê CxI, ze wzglêdu na to, ¿e w danych z eksperymentu A pojawi³y siê artefakty, a dla danych z eksperymentu B potencja³y wywo³ane mia³y nietypowy przebieg w czasie (Sekcja \ref{CxI}).
 	
-	\begin{figure}[h]
+	Do analizy po³¹czeñ SC wykorzystano tylko dwa g³êbsze kana³y (SC4 i SC6), poniewa¿ prawdopodobnie nie uda³o siê zarejestrowaæ potencja³u z p³ytszych warstw dla danych z eksperymentu B (Sekcja \ref{SC}).
+	\subsection{Po³¹czenia z CxC do LGN}
+	Do analizy wykorzystano kana³y: z zestawu A CxC8 i LGN8 oraz z zestawu B: CxC5 i LGN4.
+	Na Rysunkach \ref{rys:1_10_CxC_LGN}, \ref{rys:10_30_CxC_LGN} i \ref{rys:20_40_CxC_LGN} przedstawiono wartoœci funkcji NDTF dla kolejnych zakresów czêstoœci. Dla czêstoœci 1-10 Hz dla danych z eksperymentu A (Rysunek \ref{rys:1_10_kon_CxC_LGN}) wartoœæ funkcji NDTF w przedziale od 0 do 0,2 s jest bliska zeru. Natomiast dla danych z eksperymentu B (Rysunek \ref{rys:1_10_beta_CxC_LGN}) wystêpuje  nieznaczny pik zaraz po podaniu bodŸca (czas 0-0,1 s) oraz wysoki pik oko³o 0,2 s po 3 godzinach treningu wzrokowego. 
+		\begin{figure}[h]
 		\begin{subfigure}{.5\textwidth}
 			\centering
 			\includegraphics[width=1.\linewidth]{kontrola15_1-10_z_CxC8_do_LGN8.png}
@@ -500,7 +528,7 @@
 			\caption{Po stymulacji elektrycznej}
 			\label{rys:1_10_beta_CxC_LGN}
 		\end{subfigure}
-		\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 1-10 Hz.}
+		\caption{Przedstawienie danych z ró¿nych eksperymentów w paœmie 1-10 Hz.}
 		\label{rys:1_10_CxC_LGN}
 	\end{figure}
 	\FloatBarrier
@@ -518,7 +546,7 @@
 			\caption{Po stymulacji elektrycznej}
 			\label{rys:10_30_beta_CxC_LGN}
 		\end{subfigure}
-		\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 10-30 Hz.}
+		\caption{Przedstawienie danych z ró¿nych eksperymentów w paœmie 10-30 Hz.}
 		\label{rys:10_30_CxC_LGN}
 	\end{figure}
 	\begin{figure}[h]
@@ -540,18 +568,20 @@
 	\FloatBarrier
 	%\newpage
 	\subsection{Po³¹czenia z CxC do SC}
+	Do analizy wykorzystano kana³y: z zestawu A CxC8 i SC4 oraz z zestawu B: CxC5 i SC4.
+	Na Rysunkach \ref{rys:1_10_CxC_SC}, \ref{rys:10_30_CxC_SC} i \ref{rys:20_40_CxC_SC} przedstawiono wartoœci funkcji NDTF dla kolejnych zakresów czêstoœci. 
 	\begin{figure}[h]
 		\begin{subfigure}{.5\textwidth}
 			\centering
 			\includegraphics[width=1.\linewidth]{kontrola15_1-10_z_CxC8_do_SC4.png}
 			\caption{Bez stymulacji elektrycznej}
-			\label{rys:kon_CxC_SC}
+			\label{rys:1_10_kon_CxC_SC}
 		\end{subfigure}%
 		\begin{subfigure}{.5\textwidth}
 			\centering
 			\includegraphics[width=1.\linewidth]{beta3_1-10_z_CxC5_do_SC4.png}
 			\caption{Po stymulacji elektrycznej}
-			\label{rys:beta_CxC_SC}
+			\label{rys:1_10_beta_CxC_SC}
 		\end{subfigure}
 		\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 1-10 Hz.}
 		\label{rys:1_10_CxC_SC}
@@ -586,7 +616,7 @@
 			\label{rys:beta_CxC_SC}
 		\end{subfigure}
 		\caption{Porównanie danych z ró¿nych eksperymentów w paœmie 20-40 Hz.}
-		\label{rys:20-40_CxC_SC}
+		\label{rys:20_40_CxC_SC}
 	\end{figure}
 	\FloatBarrier
 	%\newpage
@@ -642,10 +672,11 @@
 	\end{figure}
 	
 	\chapter{Dyskusja}
-	Odniesienie do biologi po³¹czeñ.
-	Ewentualne b³êdy i sugestie co mo¿na poprawiæ.
-	
-	
+	W pracy pokazywane s¹ zale¿noœci dla dwóch ró¿nych zwierz¹t, dlatego nie ma pewnoœci, ¿e takie zale¿noœci nie s¹ wynikiem ro¿norodnoœci osobniczej. W celu rzeczywistej analizy nale¿a³oby przeanalizowaæ wiêcej zwierz¹t z obu warunków doœwiadczalnych. 
+	Po drugie, elektrody zosta³y umieszczone w tej samej g³êbokoœci, nie ma pewnoœci, ¿e 
+		
+	Te dwa czynniki powoduj¹, ¿e nie da siê bezpoœrednio porównaæ wyników z obu eksperymentów. 
+
 	\bibliography{bibliography}
 	
 \end{document}

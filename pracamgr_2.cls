@@ -2,7 +2,7 @@
 % na wydziale Fizyki UW.
 %
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{pracamgr}[2006/05/05 v0.5.0 Praca magisterska]
+\ProvidesClass{pracamgr_2}[2006/05/05 v0.5.0 Praca magisterska]
 
 
 \def\@baseclass{report}
