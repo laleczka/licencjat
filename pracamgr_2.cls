@@ -6,7 +6,7 @@
 
 
 \def\@baseclass{report}
-\def\@rodzajpracy{magisterska}
+\def\@rodzajpracy{licencjacka}
 \DeclareOption{licencjacka}{\def\@rodzajpracy{licencjacka}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{\@baseclass}}
 \PassOptionsToClass{a4paper,twoside,openright,11pt}{\@baseclass}
@@ -64,15 +64,15 @@
     \null
     \vfill
     
-   \textbf{\Large O\'swiadczenie kieruj¡cego prac¡ }
+   \textbf{\Large O\'swiadczenie kierujï¿½cego pracï¿½ }
       \vspace{10mm}
       
    Potwierdzam, {\.z}e niniejsza praca zosta{\l}a przygotowana pod moim 
-   kierunkiem i kwalifikuje si¦ do przedstawienia jej w post¦powaniu 
+   kierunkiem i kwalifikuje siï¿½ do przedstawienia jej w postï¿½powaniu 
    o nadanie tytu{\l}u zawodowego. 
    \vspace{15mm}
    
-   Data \hfill Podpis kieruj¡cego prac¡ 
+   Data \hfill Podpis kierujï¿½cego pracï¿½ 
    
    \vspace{3cm}
    \textbf{\Large O\'swiadczenie autora (autor\'ow) pracy}
@@ -80,12 +80,12 @@
     
    \'{S}wiadom odpowiedzialno\'sci prawnej o\'swiadczam, {\.z}e niniejsza praca dyplomowa zosta{\l}a 
    napisana przeze mnie samodzielnie i nie zawiera tre\'sci uzyskanych w spos\'ob niezgodny 
-   z obowi¡zuj¡cymi przepisami. 
+   z obowiï¿½zujï¿½cymi przepisami. 
    
    O\'swiadczam r\'ownie{\.z}, {\.z}e przedstawiona praca nie by{\l}a 
-   wcze\'sniej przedmiotem procedur zwi¡zanych z uzyskaniem tytu{\l}u zawodowego w wy{\.z}szej uczelni. 
+   wcze\'sniej przedmiotem procedur zwiï¿½zanych z uzyskaniem tytu{\l}u zawodowego w wy{\.z}szej uczelni. 
    
-   O\'swiadczam ponadto, {\.z}e niniejsza wersja pracy jest identyczna z za{\l}¡czon¡ wersj¡ elektroniczn¡. 
+   O\'swiadczam ponadto, {\.z}e niniejsza wersja pracy jest identyczna z za{\l}ï¿½czonï¿½ wersjï¿½ elektronicznï¿½. 
    \vspace{15mm}
    
    Data \hfill Podpis autora (autor\'ow) pracy
@@ -155,7 +155,7 @@
   \vspace*{26pt}%
 %-------------------nowosc----------------
   \begin{center}%
-    \bfseries\large Tytu{\l} pracy w j¦zyku angielskim
+    \bfseries\large Tytu{\l} pracy w jï¿½zyku angielskim
     \@endparpenalty\@M
   \end{center}
   \@tytulang\par
