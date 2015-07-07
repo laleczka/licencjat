@@ -1,16 +1,13 @@
 % Klasa dokumentow do skladu prac magisterskich i~licencjackich
-% na wydziale Matematyki, Mechaniki i~Informatyki UW.
+% na wydziale Fizyki UW.
 %
-% Copyright (c) 2001 by Wydzial Matematyki, Informatyki i Mechaniki.
-%
-% Zmiany 05.05.2006 by Seweryn Karlowicz
-
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{pracamgr}[2006/05/05 v0.5.0 Praca magisterska]
+\ProvidesClass{pracamgr_2}[2006/05/05 v0.5.0 Praca magisterska]
 
 
 \def\@baseclass{report}
 \def\@rodzajpracy{licencjacka}
+\DeclareOption{licencjacka}{\def\@rodzajpracy{licencjacka}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{\@baseclass}}
 \PassOptionsToClass{a4paper,twoside,openright,11pt}{\@baseclass}
 \ProcessOptions
@@ -23,7 +20,7 @@
 \advance\oddsidemargin 30mm
 \evensidemargin-1in
 \advance\evensidemargin 25mm
-\topmargin -2in
+\topmargin -1in
 \advance\topmargin 2cm
 \setlength\textheight{48\baselineskip}
 \addtolength\textheight{\topskip}
@@ -46,9 +43,10 @@
       \vspace{8mm plus .1fill}
       {\large\bf Praca \@rodzajpracy\\[3pt]
         na kierunku \MakeUppercase{\@kierunek} \\
+        specjalno\'s\'c \@specjalnosc
 %----zakres---
         \@zakres \par}
-      \vspace{2cm plus 1.5fill}
+      \vspace{1.5cm plus 1.5fill}
       \begin{flushright}\large
         \begin{tabular}{l}
           Praca wykonana pod kierunkiem\\
@@ -109,6 +107,8 @@
 \def\@nralbumu{???\ClassError{pracamgr}{Brak numeru albumu}\@ehc}
 \def\kierunek#1{\gdef\@kierunek{#1}}
 \def\@kierunek{???\ClassError{pracamgr}{Nie podano kierunku studiow}\@ehc}
+\def\specjalnosc#1{\gdef\@specjalnosc{#1}}
+\def\@specjalnosc{???\ClassError{pracamgr}{Nie podano specjalnosc studiow}\@ehc}
 %----zakres nie konieczny-----
 \def\zakres#1{\gdef\@zakres{w zakresie \MakeUppercase{#1}}}
 \def\@zakres{}

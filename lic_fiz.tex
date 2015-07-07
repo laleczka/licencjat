@@ -1,4 +1,4 @@
-\documentclass{pracamgr_2}
+\documentclass{pracamgr}
 
 \usepackage{polski}
 
@@ -14,7 +14,7 @@
 \usepackage{placeins}
 \usepackage{tikz}
 
-\captionsetup{belowskip=12pt,aboveskip=8pt}
+\captionsetup{belowskip=12pt,aboveskip=8pt,labelsep=period}
 \renewcommand{\arraystretch}{1.5}
 \newcolumntype{C}{>{\centering\arraybackslash}X}
 \newcolumntype{R}{>{\raggedleft\arraybackslash}X}
@@ -28,9 +28,9 @@
 
 %\renewcommand\bibname{Bibliografia}
 
-\title{Analiza zmian w sygnale LFP związanych z treningiem wzrokowym i stymulacją elektryczną w strukturach układu wzrokowego szczura.}
+\title{Analiza zmian w sygnale LFP związanych z treningiem wzrokowym i stymulacją elektryczną w strukturach układu wzrokowego szczura}
 
-\tytulang{Analysis of changes in LFP signal related to visiual training and electric stimulation in rat visual system structures.}
+\tytulang{Analysis of changes in LFP signal related to visiual training and electric stimulation in rat visual system structures}
 
 
 \kierunek{ZASTOSOWANIA FIZYKI W BIOLOGII I MEDYCYNIE}
@@ -41,7 +41,7 @@
 	\\Instytut Fizyki Doświadczalnej
 	\\Wydział Fizyki, Uniwersytet Warszawski
 	\\oraz
-	\\prof. dr hab. Wioletty Waleszczyk
+	\\dr hab. Wioletty Waleszczyk, prof. nadzw.
 	\\Pracownia Neurobiologii Widzenia
 	\\Instytut Biologii Doświadczalnej im. M. Nenckiego PAN  
 }
@@ -69,7 +69,7 @@
 	
 	%tu idzie streszczenie na strone poczatkowa
 	\begin{abstract}
-		W pracy wykorzystano dane pochodzące z eksperymentów na szczurach w dwóch paradygmatach. Dla obu warunków doświadczalnych zarejestrowano sygnał kontrolny, czyli odpowiedź układu wzrokowego na bodziec świetlny. Następnie jedną grupę szczurów od razu poddano treningowi wzrokowemu, i zbierano sygnał po jednej, dwóch i trzech godzinach od początku treningu. W drugiej grupie również rejestrowano efekt treningu wzrokowego w tych samych odstępach czasowych, jednak zanim przystąpiono do treningu, przez 2 sekundy stymulowano oko sygnałem elektrycznym. W pracy przeanalizowano sygnały z wybranych zestawów elektrod. Badano uśrednione potencjały wywołane i połączenia funkcjonalne za pomocą nieznormalizowanej funkcji przejścia (NDTF). U danych z obu eksperymentów zaobserwowano wzrost amplitudy potencjału wraz z długością treningu wzrokowego. Dla danych z eksperymentu poprzedzonego stymulacją elektryczna zauważono wzrost wartości funkcji NDTF zaraz po wystąpieniu bodźca (0-0,1 s) i w czasie 0,2 s. 
+		W pracy wykorzystano dane pochodzące z eksperymentów na szczurach w dwóch paradygmatach. Dla obu warunków doświadczalnych zarejestrowano sygnał kontrolny, czyli odpowiedź układu wzrokowego na bodziec świetlny. Następnie jedną grupę szczurów od razu poddano treningowi wzrokowemu, i zbierano sygnał po jednej, dwóch i trzech godzinach od początku treningu. W drugiej grupie również rejestrowano efekt treningu wzrokowego w tych samych odstępach czasowych, jednak zanim przystąpiono do treningu, przez 2 sekundy stymulowano oko sygnałem elektrycznym. W pracy przeanalizowano sygnały z wybranych zestawów elektrod. Badano uśrednione potencjały wywołane i połączenia funkcjonalne za pomocą nieznormalizowanej funkcji przejścia (NDTF). W danych z obu eksperymentów zaobserwowano wzrost amplitudy potencjału wraz z długością treningu wzrokowego. Dla danych z eksperymentu poprzedzonego stymulacją elektryczną zauważono wzrost wartości funkcji NDTF względem danych kontrolnych zaraz po wystąpieniu bodźca (0-0,1 s) i w czasie 0,2 s. 
 	\end{abstract}
 	
 	\tableofcontents
@@ -77,15 +77,15 @@
 	%\listoftables
 	\chapter*{Cel pracy}
 	\addcontentsline{toc}{chapter}{Cel pracy}
-	Celem pracy było zaprezentowanie metod umożliwiających badania zmian odpowiedzi na bodziec świetlny w wyniku treningu w różnych warunkach doświadczanych. Jako przykładowe dane wybrano odpowiedź na bodziec wzrokowy poprzedzony treningiem wzrokowym i odpowiedź na bodziec poprzedzony stymulacją elektryczną i treningiem wzrokowym.
+	Celem pracy było sprawdzenie użyteczności metod umożliwiających badania zmian odpowiedzi na bodziec świetlny w wyniku treningu w różnych warunkach doświadczanych. Jako przykładowe dane wybrano odpowiedź na bodziec wzrokowy poprzedzony treningiem wzrokowym i odpowiedź na bodziec poprzedzony stymulacją elektryczną oraz treningiem wzrokowym.
 	\chapter{Wprowadzenie}
 	%\addcontentsline{toc}{chapter}{Wprowadzenie}
-	Już pod koniec lat 40 ubiegłego wieku zauważono, że w wyniku prezentacji bodźca w zapisie EEG pojawia się słabo widoczna odpowiedź na ten bodziec.  Pionierem badań w tym zakresie był G.D. Dawson który zarejestrował odpowiedzi na bodziec na kilku kliszach fotograficznych i po nałożeniu ich na siebie dostrzegł  wzmocnienie odpowiedzi. Uśredniony sygnał z kilku realizacji zsynchronizowanych względem bodźca nazywa się potencjałem wywołanym EP (z \textit{ang. evoked potentials}) \citep{nieder}.
+	Już pod koniec lat 40 ubiegłego wieku zauważono, że w wyniku prezentacji bodźca w zapisie EEG pojawia się słabo widoczna odpowiedź na ten bodziec.  Pionierem badań w tym zakresie był G.D. Dawson, który zarejestrował odpowiedzi na bodziec na kilku kliszach fotograficznych i po nałożeniu ich na siebie dostrzegł  wzmocnienie odpowiedzi. Uśredniony sygnał z kilku realizacji zsynchronizowanych względem bodźca nazywa się potencjałem wywołanym (ang. \textit{evoked potential}, EP) \citep{nieder}.
 	
-	Amplituda potencjałów wywołanych zależy od bardzo wielu różnych czynników. Poza tym, że zależy od cech osobniczych, mają na nią wpływ także czynniki zewnętrzne. Jednym z nich, powodujących zwiększenie amplitudy, jest wielokrotne powtarzanie serii jednakowych bodźców zwane treningiem wzrokowym \citep{hager}. Jest to możliwe dzięki plastyczności mózgu, realizującej się poprzez długotrwałe wzmocnienia LTP (ang. \textit{Long Term Potentiations}) lub osłabienia synaptyczne LTD (ang. \textit{Long Term Depressions}). Zaobserwowano także, że wraz ze wzrostem amplitudy potencjałów następuje polepszenie funkcji wzrokowych. Ta zależność może być wykorzystywana w celach terapeutycznych np. przy leczeniu pacjentów po udarze we wzrokowej części kory. Przykładem jej zastosowania jest nieinwazyjna metoda stymulacji mózgu prądem o niskiej amplitudzie \citep{schulz}. 
+	Amplituda potencjałów wywołanych zależy od bardzo wielu różnych czynników. Poza tym, że zależy od cech osobniczych, mają na nią wpływ także czynniki zewnętrzne. Jednym z nich, powodujących zwiększenie amplitudy, jest wielokrotne powtarzanie serii jednakowych bodźców zwane treningiem wzrokowym \citep{hager}. Jest to możliwe dzięki plastyczności mózgu, realizującej się poprzez długotrwałe wzmocnienia (ang. \textit{Long Term Potentiations}, LTPs) lub osłabienia synaptyczne (ang. \textit{Long Term Depressions}, LTDs). Zaobserwowano także, że wraz ze wzrostem amplitudy potencjałów następuje polepszenie funkcji wzrokowych. Ta zależność może być wykorzystywana w celach terapeutycznych np. przy leczeniu pacjentów po udarze we wzrokowej części kory. Przykładem jej zastosowania jest nieinwazyjna metoda stymulacji mózgu prądem o niskiej amplitudzie \citep{schulz}. 
 	
 	\section{Budowa układu wzrokowego}
-	Na Rysunku \ref{rys:sch_u_wz} przedstawiono schemat organizacji układu wzrokowego. Informacja wzrokowa z siatkówki dociera do kory wzrokowej dwiema równoległymi drogami. Obie zaczynają się na siatkówce, gdzie bodźce świetlne odbierane przez fotoreceptory, są przetwarzane przez szereg komórek nerwowych i w postaci zmian potencjału są przekazywane do nerwu wzrokowego. Tu drogi się rozdzielają. Pierwsza z nich, zwana kolankowatą drogą wzrokową, prowadzi przez część grzbietową jądra kolankowatego bocznego (\textit{ang. dorsal lateral geniculate nucleus}, dLGN)  do pierwszorzędowej kory wzrokowej (V1), a stamtąd do pól korowych wyższych rzędów. Druga droga, zwana pozakolankowatą drogą wzrokową, wiedzie przez wzgórek czworaczy górny przez kompleks jądra tylno-bocznego poduszki i dociera, do pierwszorzędowej kory wzrokowej i dalej do pól korowych wyższych rzędów. \citep{viola}. 
+	Na Rysunku \ref{rys:sch_u_wz} przedstawiono schemat organizacji układu wzrokowego. Informacja wzrokowa z siatkówki dociera do kory wzrokowej dwiema równoległymi drogami. Obie zaczynają się na siatkówce, gdzie bodźce świetlne odbierane przez fotoreceptory, są przetwarzane przez szereg komórek nerwowych i w postaci zmian potencjału są przekazywane do nerwu wzrokowego. Tu drogi się rozdzielają. Pierwsza z nich, zwana kolankowatą drogą wzrokową, prowadzi przez część grzbietową jądra kolankowatego bocznego (ang. \textit{dorsal lateral geniculate nucleus}, dLGN)  do pierwszorzędowej kory wzrokowej (V1), a stamtąd do pól korowych wyższych rzędów. Druga droga, zwana pozakolankowatą drogą wzrokową, wiedzie przez wzgórek czworaczy górny, kompleks jądra tylno-bocznego poduszki i dociera do pierwszorzędowej kory wzrokowej i dalej do pól korowych wyższych rzędów \citep{viola}. 
 	\begin{figure}[htbp]
 		\begin{center}
 			\includegraphics[scale=0.5]{schemat_ukladu.jpg}
@@ -94,12 +94,12 @@
 		\label{rys:sch_u_wz}
 	\end{figure}
 	\section{Lokalne potencjały polowe}
-	Sygnał rejestrowany bezpośrednio z kory i warstw podkorowych nazywany jest elektrokorykogramem. Elektrokortykografia jest metodą inwazyjną i tylko w  wyjątkowych okolicznościach przeprowadza się ją na ludziach. Elektrody umieszczone są tuż obok neuronów -- zbiera się w ten sposób zapis aktywności mózgu z niewielkiego obszaru. Zapis ten zwany jest lokalnymi potencjałami polowymi (ang. \textit{Local Field Potentials}). W odróżnieniu od sygnału z powierzchni głowy, w LFP rejestruje się nie tylko potencjał postsynaptyczny (Rysunek \ref{rys:epsp}), ale także czynnościowy (Rysunek \ref{rys:pot_spoczy}).
+	Sygnał rejestrowany bezpośrednio z kory i warstw podkorowych nazywany jest elektrokorykogramem. Elektrokortykografia jest metodą inwazyjną i tylko w  wyjątkowych okolicznościach przeprowadza się ją na ludziach. Elektrody umieszczone są tuż obok neuronów -- zbiera się w ten sposób zapis aktywności mózgu z niewielkiego obszaru. Zapis ten zwany jest lokalnym potencjałem polowym (ang. \textit{Local Field Potential}, LFP). W odróżnieniu od sygnału z powierzchni głowy, w LFP rejestruje się nie tylko potencjał postsynaptyczny (Rysunek \ref{rys:epsp}), ale także czynnościowy (Rysunek \ref{rys:pot_spoczy}).
 	
 	Potencjały postsynaptyczne są to potencjały docierające do dendrytu komórki nerwowej. Występują dwa rodzaje:
 	\begin{itemize}
-		\item potencjały pobudzające EPSP (z ang. \textit{Excitatory Post-Synaptic Potentials})
-		\item potencjały hamujące IPSP (z ang. \textit{Inhibitory Post-Synaptic Potentials}) 
+		\item potencjały pobudzające (ang. \textit{Excitatory Post-Synaptic Potentials}, EPSPs)
+		\item potencjały hamujące (ang. \textit{Inhibitory Post-Synaptic Potentials}, IPSPs) 
 	\end{itemize}
 	Pierwsze z nich zwiększają szansę na wywołanie potencjału czynnościowego, a drugie tę szansę zmniejszają. Do neuronu dociera równocześnie wiele potencjałów. W chwili, gdy ich suma przekroczy pewną wartość graniczną, neuron zostaje pobudzony. Generuje potencjał czynnościowy, który propaguje się wzdłuż aksonu.
 	\begin{figure}[htbp]
@@ -119,7 +119,7 @@
 	\newpage
 	\section{Warstwowa budowa struktur}
 	Zarówno kora wzrokowa jak i wzgórek czworaczy górny charakteryzują się warstwową budową. Poszczególne warstwy różnią się funkcją oraz połączeniami do innych struktur. 
-	Można je rozpoznać za pomocą badania mikroskopowego wybarwionych i wypreparowanych tkanek. Jak pokazały badania, w obrębie pierwszorzędowej kory wzrokowej jak i wzgórka czworaczego górnego na pewnej głębokości obserwuje się odwrócenie polaryzacji na wykresach uśrednionych potencjałów wywołanych \citep{maier2, SC_warstwy}.
+	Można je rozpoznać za pomocą badania mikroskopowego wybarwionych i wypreparowanych tkanek. Jak pokazały badania, w obrębie pierwszorzędowej kory wzrokowej jak i wzgórka czworaczego górnego, na pewnej głębokości obserwuje się odwrócenie polaryzacji na wykresach uśrednionych potencjałów wywołanych \citep{maier2, SC_warstwy}.
 	\subsection{Kora wzrokowa}
 	Na Rysunku \ref{rys:warstwy} przedstawiono schematyczną strukturę warstwową pierwszorzędowej kory wzrokowej u makaka rezusa.
 	\begin{figure}[htbp]
@@ -146,14 +146,15 @@
 		\caption{Struktura warstwowa wzgórka czworaczego górnego \citep{SC_warstwy}. Skrótami oznaczono: SZ -- \textit{stratum zonale}, SGS -- \textit{stratum griseum superficiale}, SO -- \textit{stratum opticum}, SGI -- \textit{stratum griseum intermediale}, ISO -- istota szara okołowodociągowa.}
 		\label{rys:SC_warstwy}
 	\end{figure}
+
 	\chapter{Pochodzenie danych doświadczalnych}
 	\section{Dane doświadczalne}
 	Dane wykorzystane w niniejszej pracy pochodzą z eksperymentów przeprowadzonych w Pracowni Neurobiologii Widzenia Instytutu Biologii Doświadczalnej PAN im. Marcelego Nenckiego w Warszawie. Zostały zebrane przez zespół doświadczalny składający się z dra Andrzeja Foika i mgr inż. Katarzyny Żeber.
 	
-	W każdym doświadczeniu wykorzystano 2 szczury z gatunku Wistar, po jednym z każdego eksperymentu. Szczury zostały znieczulone dootrzewnowym zastrzykiem z uretanu (2 ml/kg). W mózgu każdego ze zwierząt umieszczono 4 elektrody:
+	W każdym doświadczeniu wykorzystano po jednym szczurze z gatunku Wistar. Szczury zostały znieczulone dootrzewnowym zastrzykiem z uretanu (2 ml/kg). W mózgu każdego ze zwierząt umieszczono 4 elektrody:
 	\begin{itemize}
-		\item 1 po stronie ipsilateralnej względem bodźca -- w korze wzrokowej (CxI)
-		\item 3 po stronie konralateralnej względem bodźca:
+		\item 1 po stronie stymulowanego oka -- w korze wzrokowej (CxI)
+		\item 3 po przeciwnej stronie do stymulowanego oka:
 		\begin{itemize}
 			\item w korze wzrokowej (CxC)
 			\item we wzgórku czworaczym górnym (SC)
@@ -178,6 +179,8 @@
 		\label{rys:porownanie_paradygmatow}
 	\end{figure}
 	\FloatBarrier
+	
+	\chapter{Metodologia}
 	\section{Przygotowanie danych do analizy}
 	Sygnał został zarejestrowany z częstotliwością 20 kHz, odfiltrowany pasmowo-przepustowo w przedziale 0,3 - 10 kHz oraz wzmocniony 500-krotnie przy użyciu wzmacniacza prądu zmiennego firmy A-M Systems\textsuperscript{TM} (\texttt{https://www.a-msystems.com/}).
 	
@@ -187,16 +190,15 @@
 	
 	Tak przygotowanie dane pocięto na odcinki od -0,2 s do 1 s (gdzie 0 było momentem wystąpienia bodźca) i uśredniono po realizacjach.
 	
-	Do dalszej analizy wybrano po 4 kanały z kory wzrokowej (zarówno kontra- i ispilateralnej względem bodźca) i wzgórka czworaczego oraz jeden kanał z ciała kolankowatego bocznego. Zmniejszenie liczby kanałów było niezbędne z dwóch powodów:
+	Do dalszej analizy wybrano po 4 kanały z kory wzrokowej (zarówno przeciw- jak i tożstronnej względem bodźca) i wzgórka czworaczego oraz jeden kanał z ciała kolankowatego bocznego. Zmniejszenie liczby kanałów było niezbędne z dwóch powodów:
 	\begin{itemize}
 		\item część kontaktów na elektrodach nie działała poprawnie -- rejestrował się szum, a nie właściwy sygnał
-		\item kanały warstw leżących jedna nad drugą były bardzo podobne
+		\item sygnały z warstw leżących jedna nad drugą były bardzo podobne
 	\end{itemize}
 	Wyboru dokonano na podstawie analizy uśrednionych potencjałów, patrz Sekcja \ref{sec:zast_pot}.
-	\chapter{Metodologia}
 	\section{Uśrednianie potencjałów wywołanych}
 	\subsection{Opis metody}
-	VEP (z ang. \textit{Visual Evoked Potential}) jest szczególnym przypadkiem potencjałów wywołanych stanu ustalonego, gdzie stymulacja odbywa się za pomocą fali świetlnej. W założeniu spontaniczna aktywność ECoG jest procesem stochastycznym (niezależnym, stacjonarnym szumem o średniej zero), a odpowiedź mózgu na każdy z kolejnych bodźców jest niezmienna. Wtedy sygnał mierzony w $i$-tej realizacji możemy wyrazić jako:
+	VEP (z ang. \textit{Visual Evoked Potential}) jest szczególnym przypadkiem potencjałów wywołanych stanu ustalonego, gdzie stymulacja odbywa się za pomocą fali świetlnej. W założeniu spontaniczna aktywność ECoG jest procesem stochastycznym (niezależnym, stacjonarnym szumem o średniej zero), a odpowiedź mózgu na każdy z kolejnych bodźców jest niezmienna. Wtedy sygnał mierzony w $i$-tej realizacji można wyrazić jako:
 	\begin{equation}
 		x_i(t) = s(t) + n_i(t),
 	\end{equation}
@@ -216,18 +218,22 @@
 		\item funkcję Gabora z nałożonym szumem
 		\item sygnał uśredniony.
 	\end{itemize}
-	Widać, że na ostatnim wykresie udało się odzyskać pierwotny kształt.
+	Widać, że na ostatnim wykresie udało się odzyskać pierwotny, choć trochę jeszcze zniekształcony, kształt funkcji Gabora.
+	\subsection{Zastosowanie metody}\label{sec:zast_pot}
+	Dane z każdego zestawu danych uśredniono po realizacjach i oddzielenie analizowano kanały odpowiadające każdej strukturze mózgu. W pierwszej kolejności odrzucono kanały, w których nie zaobserwowano potencjału wywołanego. Następnie szukano ,,przegięcia'', czyli odwrócenia potencjału w okolicy odpowiedzi na bodziec (czas 0-0,1 s). Jeśli to było możliwe, wybierano kanały bez artefaktu w momencie wystąpienia bodźca (Rysunek \ref{rys:16_kanalow}).
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[scale = 0.7]{gabor.png}
 		\end{center}
-		\caption{Na wykresie A narysowano funkcję Gabora o częstotliwości 10 Hz, odchyleniu standardowym $\sigma_g$~=~0.2 i amplitudzie $A$~=~1. Wykres B przedstawia tę samą funkcję co wykres A po dodaniu 30 składowych szumowych z rozkładu normalnego o średniej $m_{sz}$ = 0 i odchyleniu standardowym $\sigma_{sz}$ = 0.4. Wykres C to 1000 uśrednionych sygnałów z wykresu~B.}
+		\caption{Wykres A: funkcja Gabora o częstotliwości 10 Hz, odchyleniu standardowym $\sigma_g$~=~0.2 i amplitudzie $A$~=~1. Wykres B: ta sama funkcja, co na wykresie A po dodaniu 30 składowych szumowych z rozkładu normalnego o średniej $m_{sz}$ = 0 i odchyleniu standardowym $\sigma_{sz}$ = 0.4. Wykres C: 1000 uśrednionych sygnałów z wykresu~B.}
 		\label{rys:gabor}
 	\end{figure}
-	\subsection{Zastosowanie metody}\label{sec:zast_pot}
-	Dane z każdego zestawu danych uśredniono po realizacjach i oddzielenie analizowano kanały odpowiadające każdej strukturze mózgu. W pierwszej kolejności odrzucono kanały, w których nie zaobserwowano potencjału wywołanego. Następnie szukano ,,przegięcia'', czyli odwrócenia potencjału w okolicy odpowiedzi na bodziec (czas 0-0,1 s). Jeśli to było możliwe, wybierano kanały bez artefaktu w momencie wystąpienia bodźca (Rysunek \ref{rys:16_kanalow}).
+	\newpage
 	\subsection{Statystyka}\label{statystyka}
-	Żeby sprawdzić, czy wzrost amplitudy potencjału wywołanego między kontrolą a odpowiedzią na bodziec po każdej kolejnej godzinie treningu jest istotny statystycznie, zastosowano metodę bootstrapu. Spośród fragmentów [0; 0,1] s dla wszystkich czasów treningu, dwukrotnie losowano 1000 razy z powtórzeniami po 300 lub 200 fragmentów (odpowiednio dla eksperymentu A i B). Wylosowane fragmenty sygnałów uśredniano po realizacjach uzyskując dwa średnie potencjały bootstrapowe. Dla wyliczonych potencjałów liczono amplitudę \emph{peak-to-peak} i odejmowano uzyskując 1000-elementowy rozkład różnic. Następnie liczono różnicę dla każdej godziny treningu względem kontroli i porównywano z wartościami z bootstrapu. Za próg istotności statystycznej przyjęto $\alpha$ = 0,05. Jednakże ze względu na problem wielokrotnych porównań, zastosowano poprawkę Bonferroniego. Dla każdej struktury mózgowej danego szczura testowano 12 hipotez. Zatem faktyczny próg wynosił $\frac{0,05}{12}=0,0041(6)$.
+	Żeby sprawdzić, czy wzrost amplitudy potencjału wywołanego między kontrolą a odpowiedzią na bodziec po każdej kolejnej godzinie treningu jest istotny statystycznie, zastosowano metodę bootstrapu. W eksperymencie A spośród fragmentów [0; 0,1] s dla wszystkich czasów treningu, dwukrotnie losowano 1000 razy z powtórzeniami po 300 fragmentów. Wylosowane fragmenty sygnałów uśredniano po realizacjach uzyskując dwa średnie potencjały bootstrapowe. Dla wyliczonych potencjałów liczono amplitudę \emph{peak-to-peak} i odejmowano uzyskując 1000-elementowy rozkład różnic. Następnie liczono różnicę dla każdej godziny treningu względem kontroli i porównywano z wartościami z bootstrapu. W eksperymencie B postąpiono analogicznie, z tą różnicą, że losowano po 200 fragmentów.
+	
+	Za próg istotności statystycznej przyjęto $\alpha$ = 0,05. Jednakże ze względu na problem wielokrotnych porównań, zastosowano poprawkę Bonferroniego.
+	Dla każdej struktury mózgowej danego szczura testowano 12 hipotez. (Dla każdego z czterech kanałów porównywano wyniki po każdej z trzech godzin treningu z danymi kontrolnymi.) Zatem faktyczny próg wynosił $\frac{0,05}{12}=0,0041(6)$.
 	\begin{figure}[h]
 		\begin{center}
 			\includegraphics[width=\columnwidth]{16_kanalow.png}
@@ -259,8 +265,9 @@
 	Znak $^{+}$ oznacza transpozycję macierzy połączoną ze sprzężeniem zespolonym jej elementów.
 	Dla określenia rzędu modelu ($p$) stosuje się różnego rodzaju kryteria. Jednym z nich jest kryterium Akaikego \citep[s. 79]{jarek}:
 	\begin{equation}
-		AIC(p) = ln(det(V))+2\frac{pk^2}{N}.
+		AIC(p) = ln(det(V))+2\frac{pk^2}{N},
 	\end{equation}
+	gdzie $k$ oznacza liczbę kanałów, a $N$ -- liczbę wszystkich próbek.
 	\section{Połączenia funkcjonalne}
 	Zależności między dostępnymi kanałami (dane z kilku źródeł zbierane równocześnie) można badać na wiele sposobów. Jedną z podstawowych miar podobieństwa między kanałami jest koherencja. Wadą tej funkcji jest to, że nie pozwala stwierdzić kierunku oddziaływania między danymi źródłowymi. Żeby móc odpowiedzieć na pytanie, który kanał generuje informację, a który ją tylko odbiera, skorzystano z kierunkowej funkcji przejścia, bazującej na przyczynowości w sensie Grangera.
 	
@@ -305,7 +312,7 @@
 		\begin{center}
 			\includegraphics[scale=0.65]{usrednione_CxC.png}
 		\end{center}
-		\caption{Porównanie pojedynczych i uśrednionych realizacji dla 4 wybranych kanałów z CxC. W kolumnie A przedstawiono 3 pojedyncze powtórzenia, a w kolumnie B -- uśrednione po wszystkich realizacjach potencjały wywołane.}
+		\caption{Porównanie pojedynczych i uśrednionych realizacji dla 4 wybranych kanałów z CxC. W kolumnie A przedstawiono 3 pojedyncze powtórzenia, a w kolumnie B -- uśrednione po wszystkich realizacjach potencjały wywołane. Na osi Y wartości podano w mV.}
 		\label{rys:usrednione_CxC}
 	\end{figure}
 	\FloatBarrier
@@ -315,7 +322,7 @@
 		\begin{center}
 			\includegraphics[scale=0.8]{kontrola15_CxC.png}
 		\end{center}
-		\caption{Eksperyment A: Uśrednione po realizacjach potencjały wywołane. Kolorami zaznaczono kolejne godziny treningu.}
+		\caption{Eksperyment A: Uśrednione po realizacjach potencjały wywołane 4 wybranych kanałów z CxC. Na tym i na kolejnych rysunkach, kolorami zaznaczono kolejne godziny treningu.}
 		\label{rys:kontrola15_CxC}
 	\end{figure}
 	\FloatBarrier
@@ -324,7 +331,7 @@
 		\begin{center}
 			\includegraphics[scale=0.8]{beta3_CxC.png}
 		\end{center}
-		\caption{Eksperyment B: Uśrednione po realizacjach potencjały wywołane. Kolorami zaznaczono kolejne godziny treningu.}
+		\caption{Eksperyment B: Uśrednione po realizacjach potencjały wywołane 4 wybranych kanałów z CxC.}
 		\label{rys:beta3_CxC}
 	\end{figure}
 	\FloatBarrier 
@@ -364,7 +371,7 @@
 		\label{tab:beta_CxC_P}
 	\end{table}
 	\FloatBarrier
-	Na podstawie tych wyników można stwierdzić, że wzrost amplitudy wraz z długością treningu wzrokowego jest istotny statystycznie. Nie da się jednak jednoznacznie określić, że stymulacja elektryczna w eksperymencie B przyczyniła się do zwiększenia amplitudy między kontrolą a kolejnymi rejestracjami.
+	Na podstawie tych wyników można stwierdzić, że wzrost amplitudy wraz z długością treningu wzrokowego jest istotny statystycznie dla obu zestawów danych.
 	\subsection{Porównanie uśrednionych potencjałów z CxI}\label{CxI}
 	Na Rysunkach \ref{rys:kontrola15_CxI} i \ref{rys:beta3_CxI} przedstawiono uśrednione potencjały wywołane odpowiednio dla danych z eksperymentu A i B.
 	
@@ -374,7 +381,7 @@
 		\begin{center}
 			\includegraphics[scale=0.8]{kontrola15_CxI.png}
 		\end{center}
-		\caption{Eksperyment A: Uśrednione po realizacjach potencjały wywołane. Kolorami zaznaczono kolejne godziny treningu.}
+		\caption{Eksperyment A: Uśrednione po realizacjach potencjały wywołane 4 wybranych kanałów z CxI.}
 		\label{rys:kontrola15_CxI}
 	\end{figure}
 	\FloatBarrier
@@ -382,11 +389,11 @@
 		\begin{center}
 			\includegraphics[scale=0.8]{beta3_CxI.png}
 		\end{center}
-		\caption{Eksperyment B: Uśrednione po realizacjach potencjały wywołane. Kolorami zaznaczono kolejne godziny treningu.}
+		\caption{Eksperyment B: Uśrednione po realizacjach potencjały wywołane 4 wybranych kanałów z CxI.}
 		\label{rys:beta3_CxI}
 	\end{figure}
 	\FloatBarrier
-	W Tabelach \ref{tab:kontrola_CxI_P} i \ref{tab:beta_CxI_P} zestawiono wartości statystyki dla obu eksperymentów. Dla danych z eksperymentu A wzrost amplitudy jest bardziej istotny statystyczne niż dla danych z eksperymentu B. Jest to prawdopodobnie  spowodowane nietypowym kształtem potencjałów wywołanych dla danych z zestawu B.
+	W Tabelach \ref{tab:kontrola_CxI_P} i \ref{tab:beta_CxI_P} zestawiono wartości statystyki dla obu eksperymentów. Dla danych z eksperymentu A wzrost amplitudy względem danych kontrolnych jest istotny statystyczne po każdej godzinie treningu. Natomiast dla danych z eksperymentu B istotny wzrost następuje dopiero po trzeciej godzinie treningu.
 	\begin{table}[htdp]
 		\caption{P wartości dla CxI z eksperymentu A.}
 		\begin{center}
@@ -425,14 +432,14 @@
 		\begin{center}
 			\includegraphics[scale=0.8]{kontrola15_SC.png}
 		\end{center}
-		\caption{Eksperyment A: Uśrednione po realizacjach potencjały wywołane. Kolorami zaznaczono kolejne godziny treningu.}
+		\caption{Eksperyment A: Uśrednione po realizacjach potencjały wywołane 4 wybranych kanałów z SC.}
 		\label{rys:kontrola15_SC}
 	\end{figure}
 	\begin{figure}[htbp]
 		\begin{center}
 			\includegraphics[scale=0.8]{beta3_SC.png}
 		\end{center}
-		\caption{Eksperyment B: Uśrednione po realizacjach potencjały wywołane. Kolorami zaznaczono kolejne godziny treningu.}
+		\caption{Eksperyment B: Uśrednione po realizacjach potencjały wywołane 4 wybranych kanałów z SC.}
 		\label{rys:beta3_SC}
 	\end{figure}
 	\FloatBarrier
@@ -653,7 +660,7 @@
 		\label{rys:10_30_SC_CxC}
 	\end{figure}
 	\FloatBarrier
-	Na Rysunku \ref{rys:20_40_SC_CxC} przedstawiono wartości funkcji NDTF dla zakresu częsrości 20-40 Hz. Dla danych z eksperymentu A (Rysunek \ref{rys:20_40_kon_SC_CxC}) widoczny jest wysoki pik w czasie 0 s, co jest zapewne efektem zakłócenia wywołanego prezentacją bodźca. Poza tym, dla obu warunków doświadczalnych nie widać różnic między danymi kontrolnymi a każdą kolejną godziną treningu.
+	Na Rysunku \ref{rys:20_40_SC_CxC} przedstawiono wartości funkcji NDTF dla zakresu częstości 20-40 Hz. Dla danych z eksperymentu A (Rysunek \ref{rys:20_40_kon_SC_CxC}) widoczny jest wysoki pik w czasie 0 s, co jest zapewne efektem zakłócenia wywołanego prezentacją bodźca. Poza tym, dla obu warunków doświadczalnych nie widać różnic między danymi kontrolnymi a każdą kolejną godziną treningu.
 	\begin{figure}[h]
 		\begin{subfigure}{.5\textwidth}
 			\centering
@@ -672,19 +679,19 @@
 	\end{figure}
 	\FloatBarrier
 	\subsection{Połączenia z LGN do CxC}
-	Dla żadnego zestawu danych, niezależnie od dobieranych zakresów częstości nie udało się zaobserwować połączenia między tymi strukturami.
+	Dla żadnego zestawu danych, niezależnie od dobieranych zakresów częstości nie udało się zaobserwować połączenia z LGN do CxC.
 	\chapter{Dyskusja}
-	Przede wszystkim należy podkreślić, że niniejsza praca jest właściwe zaprezentowaniem metod analizy. Wykorzystano jedynie po jednym szczurze z każdego paradygmatu, więc nie ma pewności, że zaprezentowane zależności nie są wynikiem różnorodności osobniczych. Po drugie, występują różnice w budowie mózgów poszczególnych zwierząt, za czym idą także różnice w rozmieszczeniu struktur mózgowych. Dlatego nie można mieć pewności, że wybrane do porównania kontakty były umieszczone na tej samej głębokości. W celu wykonania rzeczywistego porównania należałoby przeanalizować więcej zwierząt z obu warunków doświadczalnych. 
-
-	Analiza statystyczna uśrednionych potencjałów wywołanych powala stwierdzić, że obserwowany wzrost amplitudy wraz z treningiem wzrokowym jest istotny statystycznie. Nie można jednak jednoznacznie rozstrzygnąć, czy stymulacja elektryczna przed przystąpieniem do treningu wzrokowego istotnie tę amplitudę zwiększa. Dla rejestracji z kontralateralnej kory wzrokowej po stymulacji elektrycznej rzeczywiście obserwuje się wzrost już po pierwszej godzinie treningu, co nie występuje po samym treningu wzrokowym (tylko w 2 z 4 kanałów wykazano istotny wzrost amplitudy po pierwszej godzinie treningu). W przypadku rejestracji z ipsilateralnej kory wzrokowej testy statystyczne wykazały, że stymulacja elektryczna przed treningiem wzrokowym nie spowodowała znaczącego wzrostu amplitudy. Dopiero po trzeciej godzinie treningu wzrost amplitudy był istotny statystycznie. Jednakże ze względu na nietypowy kształt potencjału, można podejrzewać, że elektroda nie została dobrze umieszczona i rejestrowany sygnał nie musi być odpowiedzią ipsilateralnej kory wzrokowej. W przypadku wzgórka czworaczego górnego wzrost amplitudy jest istotny po każdej godzinie treningu dla obu warunków doświadczalnych.
+	Przede wszystkim należy podkreślić, że niniejsza praca jest właściwe zaprezentowaniem metod analizy. Wykorzystano jedynie po jednym szczurze z każdego paradygmatu, więc nie ma pewności, że zaprezentowane zależności nie są wynikiem różnorodności osobniczych. Po drugie, występują różnice w budowie mózgów poszczególnych zwierząt, za czym idą także różnice w rozmieszczeniu struktur mózgowych. Dlatego nie można mieć pewności, że wybrane do porównania kontakty były umieszczone na tej samej głębokości. W celu wykonania rzeczywistego porównania należałoby przeanalizować dane na poziomie populacyjnym dla większej liczby zwierząt w każdym z paradygmatów.
 	
+	Analiza statystyczna uśrednionych potencjałów wywołanych pozwala stwierdzić, że obserwowany wzrost amplitudy wraz z treningiem wzrokowym jest istotny statystycznie. Nie można jednak jednoznacznie rozstrzygnąć, czy stymulacja elektryczna przed przystąpieniem do treningu wzrokowego istotnie tę amplitudę zwiększa. Dla rejestracji z przeciwstronnej kory wzrokowej po stymulacji elektrycznej rzeczywiście obserwuje się wzrost już po pierwszej godzinie treningu, co nie występuje po samym treningu wzrokowym (tylko w 2 z 4 kanałów wykazano istotny wzrost amplitudy po pierwszej godzinie treningu). W przypadku rejestracji z tożstronnej kory wzrokowej testy statystyczne wykazały, że stymulacja elektryczna przed treningiem wzrokowym nie spowodowała znaczącego wzrostu amplitudy. Dopiero po trzeciej godzinie treningu wzrost amplitudy był istotny statystycznie. Jednakże ze względu na nietypowy kształt potencjału, można podejrzewać, że elektroda nie została dobrze umieszczona i rejestrowany sygnał nie musi być odpowiedzią tożstronnej kory wzrokowej. W przypadku wzgórka czworaczego górnego wzrost amplitudy jest istotny po każdej godzinie treningu dla obu warunków doświadczalnych.
+	
+	Jest możliwe, że brak istotnych różnic w amplitudzie potencjału wywołanego w tożstronnej korze wzrokowej jest spowodowany zbyt krótkim czasem stymulacji elektrycznej. W innych tego rodzaju badaniach stosowano znacząco dłuższy czas stymulacji np. 30 min \citep{lazzaro}.
+		
 	Nieznormalizowana funkcja przejścia pozwala na określenie kierunku oddziaływania między danymi źródłowymi w częstości i czasie. Jak nadmieniono we wstępie, informacja wzrokowa jest przetwarzana dwiema drogami. Jedna z nich prowadzi przez jądro kolankowate boczne do kory wzrokowej, a druga przez wzgórek czworaczy górny i kompleks tylno-boczny poduszki do kory wzrokowej. Kora wzrokowa wysyła również informację zwrotną zarówno do LGNu \citep{viola2}, jak i do wzgórka \citep{viola}. Z tego względu analizowano połączenia między wymienionymi strukturami mózgowymi w obu kierunkach.
 	
-	Dla pary CxC-LGN udało się zaobserwować wzrost funkcji NDTF zaraz po zaprezentowaniu bodźca wzrokowego, co jest szczególnie widoczne dla zestawu danych po stymulacji elektrycznej. Niestety nie udało się wykryć połączenia między jądrem kolankowatym bocznym a kontralateralną korą wzrokową. Wytłumaczeniem może być fakt, że ponieważ LGN jest niewielką strukturą położoną głęboko pod warstwą korową, dostęp do niej jest utrudniony i być może nie trafiono elektrodą dokładnie w tę strukturę.
+	Dla pary CxC-LGN udało się zaobserwować wzrost funkcji NDTF zaraz po zaprezentowaniu bodźca wzrokowego, co jest szczególnie widoczne dla zestawu danych po stymulacji elektrycznej. Niestety nie udało się wykryć połączenia między jądrem kolankowatym bocznym a przeciwstronną korą wzrokową. Wytłumaczeniem może być fakt, że ponieważ LGN jest niewielką strukturą położoną głęboko pod warstwą korową, dostęp do niej jest utrudniony i być może nie trafiono elektrodą dokładnie w tę strukturę.
 	
 	Kolejnymi analizowanymi połączeniami, były te między korą wzrokową a wzgórkiem czworaczym górnym. Dla pary CxC-SC w obu warunkach doświadczalnych zaobserwowano znaczący wzrost funkcji NDTF względem danych kontrolnych zaraz po zaprezentowaniu bodźca wzrokowego. Dla połączeń SC-CxC wysoka wartość funkcji NDTF względem danych kontrolnych utrzymywała się na stałym poziomie dla zestawu danych bez stymulacji elektrycznej. Natomiast dla danych po stymulacji elektrycznej ta wartość wraz z długością treningu spadała.
-	
-	Jest możliwe, że brak istotnych różnic w amplitudzie potencjału wywołanego jest spowodowany zbyt krótkim czasem stymulacji elektrycznej. W innych tego rodzaju badaniach stosowano znacząco dłuższy czas stymulacji np. 30 min \citep{lazzaro}.
 	
 	Przy analizie porównawczej funkcji NDTF należałoby wykorzystać więcej szczurów, by przekonać się, czy wykryte zależności powtarzają się dla większej grupy badanych zwierząt.
 
